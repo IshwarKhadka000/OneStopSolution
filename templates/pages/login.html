@@ -1,0 +1,363 @@
+{% extends 'master/master.html' %}
+{% load static %}
+{% block content %}
+<style>
+.img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.wrap {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24); }
+  .wrap .img {
+    height: 200px; }
+
+.login-wrap {
+  position: relative; }
+  .login-wrap h3 {
+    font-weight: 300; }
+
+.form-group {
+  position: relative;
+  z-index: 0;
+  margin-bottom: 20px !important; }
+  .form-group a {
+    color: gray; }
+
+.form-control {
+  height: 48px;
+  background: #fff;
+  color: #000;
+  font-size: 16px;
+  border-radius: 5px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.1); }
+  .form-control::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: rgba(0, 0, 0, 0.2) !important; }
+  .form-control::-moz-placeholder {
+    /* Firefox 19+ */
+    color: rgba(0, 0, 0, 0.2) !important; }
+  .form-control:-ms-input-placeholder {
+    /* IE 10+ */
+    color: rgba(0, 0, 0, 0.2) !important; }
+  .form-control:-moz-placeholder {
+    /* Firefox 18- */
+    color: rgba(0, 0, 0, 0.2) !important; }
+  .form-control:focus, .form-control:active {
+    outline: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid #01d28e; }
+
+.field-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: rgba(0, 0, 0, 0.3); }
+
+.form-control-placeholder {
+  position: absolute;
+  top: 2px;
+  padding: 7px 0 0 15px;
+  -webkit-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms;
+  opacity: .6; }
+
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  -webkit-transform: translate3d(0, -120%, 0);
+  transform: translate3d(0, -120%, 0);
+  padding: 7px 0 0 0;
+  opacity: 1;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #01d28e;
+  font-weight: 700; }
+
+.social-media {
+  position: relative;
+  width: 100%; }
+  .social-media .social-icon {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 16px;
+    margin-right: 5px;
+    border-radius: 50%; }
+    .social-media .social-icon span {
+      color: #999999; }
+    .social-media .social-icon:hover, .social-media .social-icon:focus {
+      background: #01d28e; }
+      .social-media .social-icon:hover span, .social-media .social-icon:focus span {
+        color: #fff; }
+
+.checkbox-wrap {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* Hide the browser's default checkbox */
+.checkbox-wrap input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0; }
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "\f0c8";
+  font-family: "FontAwesome";
+  position: absolute;
+  color: rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  margin-top: -4px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s; }
+  @media (prefers-reduced-motion: reduce) {
+    .checkmark:after {
+      -webkit-transition: none;
+      -o-transition: none;
+      transition: none; } }
+
+/* Show the checkmark when checked */
+.checkbox-wrap input:checked ~ .checkmark:after {
+  display: block;
+  content: "\f14a";
+  font-family: "FontAwesome";
+  color: rgba(0, 0, 0, 0.2); }
+
+/* Style the checkmark/indicator */
+.checkbox-primary {
+  color: #01d28e; }
+  .checkbox-primary input:checked ~ .checkmark:after {
+    color: #01d28e; }
+
+.btn {
+  cursor: pointer;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  font-size: 15px;
+  padding: 10px 20px; }
+  .btn:hover, .btn:active, .btn:focus {
+    outline: none; }
+  .btn.btn-primary {
+    background: #01d28e !important;
+    border: 1px solid #01d28e !important;
+    color: #fff !important; }
+    .btn.btn-primary:hover {
+      border: 1px solid #01d28e;
+      background: transparent;
+      color: #01d28e; }
+    .btn.btn-primary.btn-outline-primary {
+      border: 1px solid #01d28e;
+      background: transparent;
+      color: #01d28e; }
+      .btn.btn-primary.btn-outline-primary:hover {
+        border: 1px solid transparent;
+        background: #01d28e;
+        color: #fff; }
+
+.form-group.success input{
+	border-color: #09c372;
+}
+
+.form-group.error input{
+	border-color: #ff3860;
+}
+
+.form-group .error{
+	color: #ff3860;
+	font-size :  9px;
+	height : 13px;
+}
+
+
+</style>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">One Stop Solution</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-5">
+                <div class="wrap">
+                    <div class="img" style="background-image: url(static/img/register.png);"></div>
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">Sign In</h3>
+                            </div>
+                            <div class="w-100">
+                                <p class="social-media d-flex justify-content-end">
+                                    <a class="social-icon d-flex align-items-center justify-content-center"
+                                       href="#"><span><i
+                                            class="fa-brands fa-facebook"></i></span></a>
+                                    <a class="social-icon d-flex align-items-center justify-content-center"
+                                       href="#"><span><i
+                                            class="fa-brands fa-google"></i></span></a>
+                                </p>
+                            </div>
+                        </div>
+                        <form action="" autocomplete="off" id="signin-form" class="signin-form" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group mt-3">
+                                <input autocomplete="off" class="form-control" type="text" name="username" id="username-field">
+                                <label class="form-control-placeholder">Username</label>
+                                <div class="error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <input autocomplete="off" class="form-control" name="password" id="password-field"
+                                       type="password">
+                                <label class="form-control-placeholder">Password</label>
+                                <span class="fa fa-fw fa-eye field-icon toggle-password"
+                                      toggle="#password-field"></span>
+                                <div class="error"></div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <button class="form-control btn btn-primary rounded submit px-3" type="submit">Sign In
+                                </button>
+                            </div>
+
+		            <div class="form-group d-md-flex">
+		            	<div class="w-50 text-left">
+			            	<label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+									  <input type="checkbox" checked>
+									  <span class="checkmark"></span>
+										</label>
+									</div>
+									<div class="w-50 text-md-right">
+										<a href="#">Forgot Password</a>
+									</div>
+		            </div>
+
+                        </form>
+                        <p class="text-center">Not a member? <a data-toggle="tab" href="{% url 'registration' %}">Sign Up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+
+	(function($) {
+
+	"use strict";
+
+	$(".toggle-password").click(function() {
+
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        }
+        else {
+            input.attr("type", "password");
+        }
+    });
+
+})(jQuery);
+
+$(document).ready(function(){
+    const loginForm = document.getElementById('signin-form');
+    const username = document.getElementById('username-field');
+    const password = document.getElementById('password-field');
+
+
+    loginForm.addEventListener('submit', e =>  {
+        e.preventDefault();
+        if(validateInputs()){
+            loginForm.submit();
+        }
+    });
+
+
+
+    const setError = (element , message) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+        errorDisplay.innerText = message;
+        inputControl.classList.add('error');
+        inputControl.classList.remove('success');
+
+    }
+    const setSuccess = (element) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+        errorDisplay.innerText = "";
+        inputControl.classList.add('success');
+        inputControl.classList.remove('error');
+
+    }
+
+    const validateInputs = () =>{
+        var is_form_valid = true;
+        const usernameValue = username.value.trim();
+        const passwordValue = password.value.trim();
+        if(usernameValue === ''){
+            setError(username, 'Username is required');
+            is_form_valid = false;
+
+        }
+        else{
+            setSuccess(username);
+        }
+
+        if(passwordValue === ''){
+            setError(password, 'Password is required');
+            is_form_valid = false;
+
+        }
+        else if(passwordValue.length<8){
+            setError(password, 'Password must be at least 8 characters');
+            is_form_valid = false;
+
+        }
+        else{
+            setSuccess(password);
+        }
+        return is_form_valid;
+    }
+});
+
+</script>
+{% endblock %}
+
