@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -47,7 +48,6 @@ class TalentListView(TemplateView):
 
 
 class LoginView(FormView):
-    print('Heree is the error')
     form_class = LoginForm
     success_url = reverse_lazy('index')
     template_name = 'pages/login.html'
@@ -77,3 +77,32 @@ class RegistrationView(SuccessMessageMixin, CreateView):
     template_name = 'pages/registration.html'
     success_url = reverse_lazy('login')
     success_message = 'User account registered successfully'
+
+
+class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
+    form_class = ChangePasswordForm
+    success_url = reverse_lazy('login')
+    template_name = 'pages/changepassword.html'
+    success_message = "Password Changed successfully!! Please login again using new password"
+
+
+class BecomeWorkerView(FormView):
+    form_class = WorkerProfileForm
+    success_url = reverse_lazy('index')
+    template_name = 'pages/becomeworker.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['services'] = Service.objects.all()
+        context['skills'] = Skill.objects.all()
+        return context
+
+    def form_valid(self, form):
+        profile = form.save(commit=False)
+        profile.user = self.request.user
+        profile.save()
+        skills = form.cleaned_data['skill']
+        print(skills)
+        profile.skill.add(*skills)
+        messages.success(self.request, 'Registration details submitted successfully')
+        return redirect('index')
