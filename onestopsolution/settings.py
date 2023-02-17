@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'userapp',
     'django_select2',
-
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [

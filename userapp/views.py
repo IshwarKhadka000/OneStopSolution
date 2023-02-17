@@ -15,24 +15,49 @@ class IndexView(TemplateView):
     template_name = 'pages/index.html'
 
 
-class ContactView(TemplateView):
-    template_name = 'pages/contact.html'
-
-
 class AboutView(TemplateView):
     template_name = 'pages/about.html'
 
 
-class JobListView(TemplateView):
+class ProfileView(TemplateView):
+    template_name = 'pages/profile.html'
+
+
+class JobListView(ListView):
+    model = Job
     template_name = 'pages/job-list.html'
+    context_object_name = 'jobs'
+
+
+class TalentListView(ListView):
+    model = Profile
+    template_name = 'pages/talent-list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile_ids = Profile.objects.values_list('user', flat=True)
+        context['users'] = User.objects.filter(id__in=profile_ids)
+        return context
+
+
+class TalentDetailView(DetailView):
+    model = User
+    template_name = 'pages/talent-detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.get_object()
+        return context
 
 
 class JobCategoryView(TemplateView):
     template_name = 'pages/jobcategory.html'
 
 
-class JobDetailView(TemplateView):
+class JobDetailView(DetailView):
+    model = Job
     template_name = 'pages/job-detail.html'
+    context_object_name = 'job'
 
 
 class TestimonialView(TemplateView):
@@ -41,10 +66,6 @@ class TestimonialView(TemplateView):
 
 class ErrorPageView(TemplateView):
     template_name = 'pages/404.html'
-
-
-class TalentListView(TemplateView):
-    template_name = 'pages/talent-list.html'
 
 
 class LoginView(FormView):
@@ -102,7 +123,35 @@ class BecomeWorkerView(FormView):
         profile.user = self.request.user
         profile.save()
         skills = form.cleaned_data['skill']
-        print(skills)
         profile.skill.add(*skills)
         messages.success(self.request, 'Registration details submitted successfully')
         return redirect('index')
+
+
+class JobPostView(FormView):
+    form_class = JobCreateForm
+    success_url = reverse_lazy('index')
+    template_name = 'pages/postajob.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['services'] = Service.objects.all()
+        context['skills'] = Skill.objects.all()
+        return context
+
+    def form_valid(self, form):
+        job = form.save(commit=False)
+        job.postedby = self.request.user
+        job.save()
+        skills = form.cleaned_data['skill']
+        job.skill.add(*skills)
+        print('Hereee')
+        messages.success(self.request, 'New job created successfully')
+        return redirect('index')
+
+
+class ContactView(SuccessMessageMixin, CreateView):
+    form_class = ContactForm
+    template_name = 'pages/contact.html'
+    success_url = reverse_lazy('index')
+    success_message = 'Query submitted successfully !! We will get back to you as soon as possible'

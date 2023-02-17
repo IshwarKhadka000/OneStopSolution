@@ -35,12 +35,23 @@ class WorkerProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['service'].widget.attrs.update({'class': 'form-control'})
+        self.fields['skill'].widget.attrs.update({'class': 'form-control'})
 
     class Meta:
         model = Profile
         exclude = ['user']
 
 
+class JobCreateForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        model = Job
+        exclude = ['posted_on', 'modified_on', 'postedby']
 
 
-
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['name', 'email', 'subject', 'message']

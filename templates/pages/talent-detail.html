@@ -1,0 +1,61 @@
+{% extends 'master/master.html' %}
+{% load static %}
+{% block content %}
+     <!-- Job Detail Start -->
+        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="row gy-5 gx-4">
+                    <div class="col-lg-8">
+                        <div class="d-flex align-items-center mb-5">
+                            <img class="flex-shrink-0 img-fluid border rounded" src="{{user.profile.image.url}}" alt="" style="width: 80px; height: 80px;">
+                            <div class="text-start ps-4">
+                                <h3 class="mb-3">{{user.username}}</h3>
+                                <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{user.profile.location}}</span>
+                                <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>{{user.profile.fee}} Rupees</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+
+                            <h4 class="mb-3">Talent's bio</h4>
+                            <p>{{user.profile.bio}}</p>
+                            <h4 class="mb-3">Key Skills</h4>
+                            <ul class="list-unstyled">
+                            {% for skill in user.profile.skill.all %}
+                                <li><i class="fa fa-angle-right text-primary me-2"></i>{{skill.name}}</li>
+                            {% endfor %}
+                            </ul>
+
+                        </div>
+
+                        <div class="">
+                            <button class="btn btn-primary w-100" type="submit">Hire Now</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
+                            <h4 class="mb-4">Profile Summery</h4>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>Joined On: {{user.profile.joined_on}}</p>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>Experience: {{user.profile.experience}} years</p>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>Job category: {{user.profile.service}}</p>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>Charge per hour(Rs.): {{user.profile.fee}}</p>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>Location: {{user.profile.location}}</p>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>Gender: {{user.profile.gender}}</p>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>Providing service: {{user.profile.service}}</p>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>Is active: {{user.profile.active}}</p>
+                        </div>
+                        <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
+                            <h4 class="mb-4">Contact details</h4>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>Fullname: {{user.first_name}} {{user.last_name}}</p>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>Email: {{user.email}}</p>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>Mobile number: {{user.profile.phone_number}}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Job Detail End -->
+
+
+{% endblock %}
