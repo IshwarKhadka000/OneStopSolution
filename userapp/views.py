@@ -2,7 +2,10 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import Q
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView, TemplateView
@@ -10,6 +13,7 @@ from userapp.forms import *
 
 
 # Create your views here.
+
 
 class IndexView(TemplateView):
     template_name = 'pages/index.html'
@@ -25,29 +29,86 @@ class ProfileView(TemplateView):
 
 class JobListView(ListView):
     model = Job
-    template_name = 'pages/job-list.html'
+    template_name = 'pages/job-list1.html'
     context_object_name = 'jobs'
 
 
 class TalentListView(ListView):
     model = Profile
     template_name = 'pages/talent-list.html'
+    context_object_name = 'profiles'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        profile_ids = Profile.objects.values_list('user', flat=True)
-        context['users'] = User.objects.filter(id__in=profile_ids)
+        context['services'] = Service.objects.all()
+        context['skills'] = Skill.objects.all()
         return context
+
+
+class FilterTalentListView(View):
+    template_name = 'pages/filtered_talentlist.html'
+
+    def get_experience_queryset(self, value):
+        queryset = Profile.objects.all()
+        if value == 1:
+            queryset = set(queryset.filter(experience__lte=1).values_list('id', flat=True))
+        if value == 2:
+            queryset = set(queryset.filter(experience__lte=3, experience__gte=1).values_list('id', flat=True))
+        if value == 3:
+            queryset = set(queryset.filter(experience__lte=5, experience__gte=3).values_list('id', flat=True))
+        if value == 4:
+            queryset = set(queryset.filter(experience__gte=5).values_list('id', flat=True))
+        print(queryset)
+        return queryset
+    def get_queryset(self):
+        queryset = Profile.objects.all()
+        if self.request.GET:
+            minimum_fee = self.request.GET.get('minimum_fee')
+            maximum_fee = self.request.GET.get('maximum_fee')
+            service = list(map(int, self.request.GET.getlist('service[]')))
+            experience = list(map(int, self.request.GET.getlist('experience[]')))
+            skill = list(map(int, self.request.GET.getlist('skill[]')))
+            rating = self.request.GET.get('rating')
+            print(skill)
+            if experience:
+                main_set = set()
+                set_1 = set()
+                set_2 = set()
+                set_3 = set()
+                set_4 = set()
+                if 1 in experience:
+                    set_1 = self.get_experience_queryset(1)
+                if 2 in experience:
+                    set_2 = self.get_experience_queryset(2)
+                if 3 in experience:
+                    set_3 = self.get_experience_queryset(3)
+                if 4 in experience:
+                    set_4 = self.get_experience_queryset(4)
+                main_set = main_set.union(set_1, set_2, set_3, set_4)
+
+                queryset = queryset.filter(id__in=main_set)
+
+            queryset = queryset.filter(fee__gte=minimum_fee, fee__lte=maximum_fee).distinct()
+            if service:
+                queryset = queryset.filter(service__in=service).distinct()
+
+            if skill:
+                queryset = queryset.filter(skill__in=skill).distinct()
+
+        return queryset
+
+    def get(self, request, *args, **kwargs):
+        context = dict()
+        context['profiles'] = self.get_queryset()
+        context['services'] = Service.objects.all()
+        context['skills'] = Skill.objects.all()
+        return render(request, self.template_name, context)
 
 
 class TalentDetailView(DetailView):
     model = User
     template_name = 'pages/talent-detail.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['user'] = self.get_object()
-        return context
+    context_object_name = 'user'
 
 
 class JobCategoryView(TemplateView):

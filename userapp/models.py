@@ -68,6 +68,7 @@ class Job(models.Model):
     def get_profile_count(self):
         return self.applied_by.all().count()
 
+
 class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)

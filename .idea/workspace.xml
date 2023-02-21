@@ -4,31 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7760427-354d-485d-84d8-84fc44c3a90e" name="Changes" comment="worker registration and change password completed">
-      <change afterPath="$PROJECT_DIR$/templates/pages/postajob.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/pages/profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/pages/talent-detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userapp/templatetags/__init__.py" afterDir="false" />
+    <list default="true" id="c7760427-354d-485d-84d8-84fc44c3a90e" name="Changes" comment="about, password change, contact us, job posting and view, worker profile view">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Profile/Documents/2022-11-07_21.58.15.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Profile/Documents/2022-11-07_21.58.15_5J6xD7A.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Profile/Documents/2022-11-07_21.58.15_7kUXwsC.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Profile/Images/2022-11-06_21.08.37.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Profile/Images/2022-11-06_21.08.37_YDea1sE.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Profile/Images/2022-11-06_21.08.37_x44sO5S.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/onestopsolution/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/onestopsolution/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layouts/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layouts/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/becomeworker.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/changepassword.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/changepassword.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/contact.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/job-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/job-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/job-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/job-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pages/talent-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/talent-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/views.py" afterDir="false" />
@@ -107,7 +86,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676290184103</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="about, password change, contact us, job posting and view, worker profile view">
+      <created>1676611317474</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1676611317474</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -123,6 +109,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="worker registration and change password completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="worker registration and change password completed" />
+    <MESSAGE value="about, password change, contact us, job posting and view, worker profile view" />
+    <option name="LAST_COMMIT_MESSAGE" value="about, password change, contact us, job posting and view, worker profile view" />
   </component>
 </project>
