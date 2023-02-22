@@ -1,0 +1,292 @@
+{% extends 'master/master.html' %}
+{% load static %}
+{% block content %}
+<style>
+
+.wrap {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24); }
+  .wrap .img {
+    height: 200px; }
+
+.form-wrap {
+  position: relative; }
+  .login-wrap h3 {
+    font-weight: 300; }
+
+
+.form-floating.success input{
+	border-color: #09c372;
+}
+
+.form-floating.error input{
+	border-color: #ff3860;
+}
+
+.form-floating .error{
+	color: #ff3860;
+	font-size :  9px;
+	height : 13px;
+}
+</style>
+
+<!-- Worker profile Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Complete your worker profile</h1>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-10">
+                        <div class="wrap">
+                            <div class="form-wrap p-4 p-md-5 wow fadeInUp" data-wow-delay="0.5s">
+                            <form id="workerprofile-form" class="workerprofile-form" enctype="multipart/form-data" action="" method="POST">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="location" id="location-field" placeholder="Your complete address">
+                                            <label for="location-field">Your complete address</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="mobile-number"  name="phone_number" placeholder="Your mobile number">
+                                            <label for="mobile-number">Your mobile number</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select name="gender" id="gender-field" class="form-control">
+                                                <option value="male">male</option>
+                                                <option value="female">female</option>
+                                            </select>
+                                            <label for="gender-field">Your gender</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select name="service" id="service-field" class="form-control">
+                                                {% for service in services %}
+                                                    <option value="{{service.id}}">{{service.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <label for="service-field">You are providing service as</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="charge-field" name="fee" placeholder="Minimum fee you charge per hour in Rs.">
+                                            <label for="charge-field">Minimum fee you charge per hour in Rs.</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="experience-field" name="experience" placeholder="Years of experience">
+                                            <label for="experience-field">Years of experience</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-floating form-row">
+                                            <br><select class="form-control multiple-skills" id="skill-field" name="skill" multiple="multiple" tabindex="0">
+                                                {% for skill in skills %}
+                                                    <option value="{{skill.id}}">{{skill}}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <label for="skill-field">You describe yourself as</label>
+                                            <div class="error"></div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="file" id="image-field" name="image" class="form-control" placeholder="Your image" accept="image/jpeg, image/jpeg" >
+                                            <label for="image-field">Upload your image</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="file" class="form-control" id="document-field" name="document" placeholder="Certificates related to your work and skills">
+                                            <label for="document-field">Upload certifications related to your work and skills</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" name="bio" placeholder="About you and the service you providing in detail:" id="detail-field" style="height: 150px"></textarea>
+                                            <label for="detail-field">About you and the service you providing in detail</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact End -->
+    </div>
+</section>
+<script src="{% static 'lib/select2/js/select2.min.js' %}"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('.multiple-skills').select2();
+});
+
+</script>
+<script>
+    const workerform = document.getElementById('workerprofile-form');
+    const bio = document.getElementById('detail-field');
+    const address = document.getElementById('location-field');
+    const contact = document.getElementById('mobile-number');
+    const gender = document.getElementById('gender-field');
+    const image = document.getElementById('image-field');
+    const certificate = document.getElementById('document-field');
+    const fee = document.getElementById('charge-field');
+    const experience = document.getElementById('experience-field');
+
+    workerform.addEventListener('submit', e => {
+        e.preventDefault();
+        if(validateInputs()){
+            workerform.submit();
+        }
+    });
+
+    const isValidMobile = (contact) =>{
+        const re = /(\+977)?[9][6-9]\d{8}/;
+        return re.test(contact);
+
+    }
+
+    const setError = (element , message) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+        errorDisplay.innerText = message;
+        inputControl.classList.add('error');
+        inputControl.classList.remove('success');
+
+    }
+    const setSuccess = (element) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+        errorDisplay.innerText = "";
+        inputControl.classList.add('success');
+        inputControl.classList.remove('error');
+
+    }
+
+    const validateInputs = () => {
+        var is_form_valid = true;
+        const bioValue = bio.value.trim();
+        const addressValue = address.value.trim();
+        const contactValue = contact.value.trim();
+        const genderValue = gender.value.trim();
+        const imageValue = image.value;
+        const certificateValue = certificate.value;
+        const feeValue = fee.value.trim();
+        const experienceValue = experience.value.trim();
+
+        if(bioValue == ''){
+            setError(bio , 'Bio field is required');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(bio)
+        }
+
+        if(addressValue == ''){
+            setError(address , 'Location field is required');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(address);
+        }
+
+        if(contactValue == ''){
+            setError(contact , 'Mobile number field is required');
+            is_form_valid = false;
+        }
+        else if( !isValidMobile(contactValue)){
+            setError(contact , 'Invalid mobile number');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(contact);
+        }
+
+        if(genderValue == ''){
+            setError(gender, 'Service value is required');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(gender);
+        }
+
+        if(imageValue == ''){
+            setError(image, 'Image is required');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(image);
+        }
+        if(certificateValue == ''){
+            setError(certificate, 'Document is required');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(certificate);
+        }
+
+        if(feeValue == ''){
+            setError(fee, 'fee is required');
+            is_form_valid = false;
+        }
+        else if(feeValue <=0){
+            setError(fee, 'charge should be greater than 0');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(fee);
+        }
+
+        if(experienceValue == ''){
+            setError(experience, 'experience is required');
+            is_form_valid = false;
+        }
+        else if(feeValue <0){
+            setError(experience, 'Experience should be 0 years or more');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(experience);
+        }
+
+        return is_form_valid;
+
+
+    }
+ </script>
+{% endblock %}
+
