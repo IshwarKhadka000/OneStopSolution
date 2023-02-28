@@ -4,15 +4,286 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7760427-354d-485d-84d8-84fc44c3a90e" name="Changes" comment="talent filteration completed">
-      <change afterPath="$PROJECT_DIR$/templates/pages/settings.html" afterDir="false" />
+    <list default="true" id="c7760427-354d-485d-84d8-84fc44c3a90e" name="Changes" comment="everything until view and update profile">
+      <change afterPath="$PROJECT_DIR$/adminapp/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adminapp/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adminapp/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adminapp/context_processors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adminapp/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adminapp/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adminapp/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adminapp/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adminapp/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adminapp/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/OneNote Table Of Contents.onetoc2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/arrow_large_left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/arrow_left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/arrow_left2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/arrow_right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/arrow_right2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/arrowleft.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/arrowright.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/arrows.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/black50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/boxed_bgtile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/bullet_boxed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/bullets.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/bullets.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/bullets2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/coloredbg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/grain.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/gridtile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/gridtile_3x3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/gridtile_3x3_white.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/gridtile_white.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/large_left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/large_right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/left-arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/loader.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/loader2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/navigdots.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/navigdots_bgtile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/right-arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/shadow1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/shadow2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/shadow3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/small_arrows.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/small_left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/small_left_boxed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/small_right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/small_right_boxed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/timer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/timerdot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/transparent.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/assets/white50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/.npmrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/CODE_OF_CONDUCT.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/1-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/1-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/1-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/1-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/1-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/1-6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/1-7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/1-8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/2-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/2-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/2-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/2-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/3-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/3-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/3-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/3-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/5-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/big/2-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/big/2-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/big/2-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/big/2-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/forkme-on-github-right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/medium/2-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/medium/2-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/medium/2-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/medium/2-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/small/2-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/small/2-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/small/2-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/small/2-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/small/4-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/small/4-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/small/4-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/small/4-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/1-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/1-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/1-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/1-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/1-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/1-6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/1-7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/1-8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/2-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/2-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/2-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/2-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/3-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/3-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/3-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/3-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/4-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/4-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/4-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/4-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/img/thumbs/5-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/demo/js/highlight.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/dist/baguetteBox.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/dist/baguetteBox.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/dist/baguetteBox.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/dist/baguetteBox.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/gulpfile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/src/baguetteBox.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/baguetteBox.js-dev/src/baguetteBox.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/OneNote Table Of Contents.onetoc2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/animate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/animate.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/aos/aos.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/baguetteBox.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/jquery-ui.structure.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/media.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/nice-select.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/owl.carousel.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/owl.theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/settings.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/slick-theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/slick.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/splitting.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/css/styleesh.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/Flaticon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/Flaticon.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/Flaticon.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/OneNote Table Of Contents.onetoc2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/_flaticon.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/backup.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/flaticon.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/flaticon.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/font/Flaticon.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/font/Flaticon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/font/Flaticon.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/font/Flaticon.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/font/Flaticon.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/font/_flaticon.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/font/flaticon.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/font/flaticon.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/license/license.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/my-icons-collection (46).zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/font/my-icons-collection.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/img/OneNote Table Of Contents.onetoc2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/img/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/img/slider/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/img/slider/1.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/img/slider/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/img/slider/2.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/img/slider/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/img/slider/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/img/slider/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/img/slider/5.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/img/slider/banner2-removebg-preview (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/img/slider/banner3-removebg-preview.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/img/user.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/acmeticker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/aos/aos.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/baguetteBox.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/daterangepicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/jquery-3.3.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/jquery-3.3.1.slim.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/jquery-ui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/jquery-ui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/jquery.counterup.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/jquery.waypoints.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/moment.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/nice-select/jquery-nice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/nice-select/jquery.nice-select.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/owl.carousel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/popper.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/rev-slider/jquery.themepunch.plugins.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/rev-slider/jquery.themepunch.revolution.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/rev-slider/jquery.themepunch.revolution.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/scroll-out.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/scroll-out.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/scroll2Section.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/slick.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/js/wow.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/Gruntfile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/assets/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/assets/css/style.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/assets/css/style.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/assets/js/acmeticker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/assets/js/acmeticker.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/assets/js/acmeticker.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/assets/js/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/assets/js/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/assets/js/jquery.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/assets/scss/base/_mixins.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/assets/scss/base/_variable.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/assets/scss/main.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/examples/horizontal.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/examples/marquee.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/examples/typewriter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/examples/vertical.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/admin/news-ticker-controls-acme/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/layouts/footer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/layouts/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/layouts/navbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/layouts/sidebar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/master/master.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/add_service_modal.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/add_skill_modal.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/clients.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/delete_service_modal.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/edit_service_modal.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/edit_skill_modal.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/job_detail_modal.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/jobs.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/queries.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/query_detail_model.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/services.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/skills.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/worker_detail_model.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/pages/workers.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/userapp/migrations/0009_service_created_on_service_updated_on_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/userapp/migrations/0010_alter_skill_created_on_alter_skill_updated_on.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/userapp/migrations/0011_alter_service_created_on_alter_service_updated_on.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layouts/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layouts/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layouts/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layouts/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/filtered_joblist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/talent-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/talent-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onestopsolution/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/onestopsolution/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onestopsolution/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/onestopsolution/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layouts/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/layouts/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layouts/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/layouts/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layouts/message.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/layouts/message.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/master/master.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/master/master.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/becomeworker.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/becomeworker.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/changepassword.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/changepassword.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/contact.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/filtered_joblist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/filtered_joblist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/filtered_talentlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/filtered_talentlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/job-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/job-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/job-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/job-list1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/job-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/jobcategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/jobcategory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/postajob.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/postajob.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/settings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/talent-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/talent-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/talent-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/talent-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/testimonial.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/testimonial.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/views.py" afterDir="false" />
     </list>
@@ -37,13 +308,16 @@
     <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2LVatRvfOls2CgFxKQYxDTxk7Za" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
@@ -51,6 +325,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/user" />
       <recent name="$PROJECT_DIR$/userapp/templatetags" />
     </key>
   </component>
@@ -107,7 +382,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676967586623</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="view and update profile completed">
+      <created>1677077371599</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677077371599</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -122,10 +404,12 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="worker registration and change password completed" />
     <MESSAGE value="about, password change, contact us, job posting and view, worker profile view" />
     <MESSAGE value="talent filteration completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="talent filteration completed" />
+    <MESSAGE value="view and update profile completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="view and update profile completed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

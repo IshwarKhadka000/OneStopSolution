@@ -1,0 +1,100 @@
+
+            <div class="modal-header">
+                <h5 class="modal-title">Worker Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>First Name</label>
+								  	<input type="text" class="form-control" name="first_name" id="firstname-field" value="{{profile.user.first_name}}" readonly>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Last Name</label>
+								  	<input type="text" class="form-control" name="last_name" id="lastname-field" value="{{profile.user.last_name}}" readonly>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Gender</label>
+										<input type="text" class="form-control" name="gender" id="gender-field" value="{{profile.gender}}" readonly>
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Email</label>
+								  	<input type="text" class="form-control" name="email" id="email-field" value="{{profile.user.email}}" readonly>
+
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Phone number</label>
+								  	<input type="text" class="form-control" name="phone_number" id="mobile-number" value="{{profile.phone_number}}" readonly>
+
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Complete address</label>
+								  	<input type="text" class="form-control" name="location" id="location-field" value="{{profile.location}}" readonly>
+
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Charge per hour</label>
+								  	<input type="text" class="form-control" id="charge-field" name="fee" value="{{profile.fee}}" readonly>
+
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Years of experience</label>
+								  	<input type="text" class="form-control" name="experience" id="experience-field" value="{{profile.experience}}" readonly>
+
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Service providing</label>
+									<input type="text" class="form-control" name="service" id="service-field" value="{{profile.service}}" readonly>
+
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Skills:</label><br>
+									{% for skill in profile.skill.all%}
+										{{skill.name}}
+									{% endfor %}
+								</div>
+
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+								  	<label>Bio</label>
+									<textarea class="form-control" name="bio" id="detail-field" rows="4" readonly>{{user.profile.bio}}</textarea>
+
+								</div>
+
+							</div>
+						</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+

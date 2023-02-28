@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'userapp',
+    'userapp', 'adminapp',
     'django_select2',
     'django_cleanup.apps.CleanupConfig',
 ]
@@ -63,6 +63,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'adminapp.context_processors.check_active_sidebar_links',
             ],
         },
     },

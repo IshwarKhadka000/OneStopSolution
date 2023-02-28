@@ -16,7 +16,7 @@ from userapp.forms import *
 
 
 class IndexView(TemplateView):
-    template_name = 'pages/index.html'
+    template_name = 'user/pages/index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -25,12 +25,12 @@ class IndexView(TemplateView):
 
 
 class AboutView(TemplateView):
-    template_name = 'pages/about.html'
+    template_name = 'user/pages/about.html'
 
 
 class SettingView(DetailView):
     model = User
-    template_name = 'pages/settings.html'
+    template_name = 'user/pages/settings.html'
     context_object_name = 'user'
 
     def get_context_data(self, **kwargs):
@@ -43,7 +43,7 @@ class SettingView(DetailView):
 
 class JobListView(ListView):
     model = Job
-    template_name = 'pages/job-list1.html'
+    template_name = 'user/pages/job-list.html'
     context_object_name = 'jobs'
 
     def get_context_data(self, **kwargs):
@@ -54,7 +54,7 @@ class JobListView(ListView):
 
 
 class FilterJobListView(View):
-    template_name = 'pages/filtered_joblist.html'
+    template_name = 'user/pages/filtered_joblist.html'
 
     def get_experience_queryset(self, value):
         queryset = Profile.objects.all()
@@ -113,7 +113,7 @@ class FilterJobListView(View):
 
 class TalentListView(ListView):
     model = Profile
-    template_name = 'pages/talent-list.html'
+    template_name = 'user/pages/talent-list.html'
     context_object_name = 'profiles'
 
     def get_context_data(self, **kwargs):
@@ -124,7 +124,7 @@ class TalentListView(ListView):
 
 
 class FilterTalentListView(View):
-    template_name = 'pages/filtered_talentlist.html'
+    template_name = 'user/pages/filtered_talentlist.html'
 
     def get_experience_queryset(self, value):
         queryset = Profile.objects.all()
@@ -186,32 +186,32 @@ class FilterTalentListView(View):
 
 class TalentDetailView(DetailView):
     model = User
-    template_name = 'pages/talent-detail.html'
+    template_name = 'user/pages/talent-detail.html'
     context_object_name = 'user'
 
 
 class JobCategoryView(TemplateView):
-    template_name = 'pages/jobcategory.html'
+    template_name = 'user/pages/jobcategory.html'
 
 
 class JobDetailView(DetailView):
     model = Job
-    template_name = 'pages/job-detail.html'
+    template_name = 'user/pages/job-detail.html'
     context_object_name = 'job'
 
 
 class TestimonialView(TemplateView):
-    template_name = 'pages/testimonial.html'
+    template_name = 'user/pages/testimonial.html'
 
 
 class ErrorPageView(TemplateView):
-    template_name = 'pages/404.html'
+    template_name = 'user/pages/404.html'
 
 
 class LoginView(FormView):
     form_class = LoginForm
     success_url = reverse_lazy('index')
-    template_name = 'pages/login.html'
+    template_name = 'user/pages/login.html'
 
     def form_valid(self, form):
         user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
@@ -235,7 +235,7 @@ class LogoutView(View):
 
 class RegistrationView(SuccessMessageMixin, CreateView):
     form_class = NewUserForm
-    template_name = 'pages/registration.html'
+    template_name = 'user/pages/registration.html'
     success_url = reverse_lazy('login')
     success_message = 'User account registered successfully'
 
@@ -243,14 +243,14 @@ class RegistrationView(SuccessMessageMixin, CreateView):
 class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
     form_class = ChangePasswordForm
     success_url = reverse_lazy('login')
-    template_name = 'pages/changepassword.html'
+    template_name = 'user/pages/changepassword.html'
     success_message = "Password Changed successfully!! Please login again using new password"
 
 
 class BecomeWorkerView(FormView):
     form_class = WorkerProfileForm
     success_url = reverse_lazy('index')
-    template_name = 'pages/becomeworker.html'
+    template_name = 'user/pages/becomeworker.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -272,7 +272,7 @@ class BecomeWorkerView(FormView):
 class WorkerProfileUpdateView(UpdateView):
     form_class = WorkerProfileForm
     queryset = Profile.objects.all()
-    template_name = 'pages/settings.html'
+    template_name = 'user/pages/settings.html'
     success_url = reverse_lazy('settings')
 
     def form_valid(self, form):
@@ -302,10 +302,11 @@ class WorkerProfileUpdateView(UpdateView):
         user = profile.user
         return redirect('settings', pk=profile.user.pk)
 
+
 class JobPostView(FormView):
     form_class = JobCreateForm
     success_url = reverse_lazy('index')
-    template_name = 'pages/postajob.html'
+    template_name = 'user/pages/postajob.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -326,6 +327,6 @@ class JobPostView(FormView):
 
 class ContactView(SuccessMessageMixin, CreateView):
     form_class = ContactForm
-    template_name = 'pages/contact.html'
+    template_name = 'user/pages/contact.html'
     success_url = reverse_lazy('index')
     success_message = 'Query submitted successfully !! We will get back to you as soon as possible'

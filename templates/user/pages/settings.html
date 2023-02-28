@@ -1,0 +1,388 @@
+{% extends 'user/master/master.html' %}
+{% load static %}
+{% block content %}
+<style>
+
+
+.shadow {
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.profile-tab-nav {
+	min-width: 250px;
+}
+
+.tab-content {
+	flex: 1;
+}
+
+.form-group {
+	margin-bottom: 1.5rem;
+}
+
+.nav-pills a.nav-link {
+	padding: 15px 20px;
+	border-bottom: 1px solid #ddd;
+	border-radius: 0;
+	color: #333;
+}
+.nav-pills a.nav-link i {
+	width: 20px;
+}
+
+.img-circle img {
+	height: 100px;
+	width: 100px;
+	border-radius: 100%;
+	border: 5px solid #fff;
+}
+
+
+.form-group.success input{
+	border-color: #09c372;
+}
+
+.form-group.error input{
+	border-color: #ff3860;
+}
+
+.form-group .error{
+	color: #ff3860;
+	font-size :  9px;
+	height : 13px;
+}
+
+
+</style>
+    <section class="py-5 my-5">
+		<div class="container">
+			<h1 class="mb-5">Worker Account Settings</h1>
+			<div class="bg-white shadow rounded-lg d-block d-sm-flex">
+				<div class="profile-tab-nav border-right">
+					<div class="p-4">
+						<div class="img-circle text-center mb-3">
+							<img src="{{user.profile.image.url}}" alt="Image" class="shadow">
+						</div>
+						<h4 class="text-center">{{user.first_name}} {{user.last_name}}</h4>
+						<p class="text-center">@{{user.username}}</p>
+					</div>
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
+							<i class="fa fa-home text-center mr-1"></i>
+							Account
+						</a>
+						<a class="nav-link" id="jobs-applied-tab" data-toggle="pill" href="#jobsapplied" role="tab" aria-controls="jobs-applied" aria-selected="true">
+							<i class="fa-solid fa-list text-center mr-1"></i>
+							Applied Jobs
+						</a>
+						<a class="nav-link" id="jobs-conpleted-tab" data-toggle="pill" href="#account" role="tab" aria-controls="jobs-completed" aria-selected="true">
+							<i class="fa-solid fa-list-check text-center mr-1"></i>
+							Completed Jobs
+						</a>
+						<a class="nav-link" id="jobs-posted-tab" data-toggle="pill" href="#account" role="tab" aria-controls="jobs-posted" aria-selected="true">
+							<i class="fa-solid fa-pen-to-square text-center mr-1"></i>
+							Posted Jobs
+						</a>
+
+						<a class="nav-link" id="notification-tab" data-toggle="pill" href="#notification" role="tab" aria-controls="notification" aria-selected="false">
+							<i class="fa fa-bell text-center mr-1"></i>
+							Notification
+						</a>
+					</div>
+				</div>
+				<div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+					<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+						<form id="update-form" method="POST" action="{% url 'updateworkerprofile' user.profile.pk %}">
+							{% csrf_token %}
+							<h3 class="mb-4">Worker Account Settings</h3>
+							<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>First Name</label>
+								  	<input type="text" class="form-control" name="first_name" id="firstname-field" value="{{user.first_name}}" readonly>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Last Name</label>
+								  	<input type="text" class="form-control" name="last_name" id="lastname-field" value="{{user.last_name}}" readonly>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Gender</label>
+									<select class="form-control" name="gender" id="gender-field">
+										<option value="male" {% if user.profile.gender == 'male' %} selected {% endif %} >male</option>
+										<option value="female" {% if user.profile.gender == 'female' %} selected {% endif %} >female</option>
+									</select>
+									<div class="error"></div>
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Email</label>
+								  	<input type="text" class="form-control" name="email" id="email-field" value="{{user.email}}">
+									<div class="error"></div>
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Phone number</label>
+								  	<input type="text" class="form-control" name="phone_number" id="mobile-number" value="{{user.profile.phone_number}}">
+									<div class="error"></div>
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Complete address</label>
+								  	<input type="text" class="form-control" name="location" id="location-field" value="{{user.profile.location}}">
+									<div class="error"></div>
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Charge per hour</label>
+								  	<input type="text" class="form-control" id="charge-field" name="fee" value="{{user.profile.fee}}">
+									<div class="error"></div>
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Years of experience</label>
+								  	<input type="text" class="form-control" name="experience" id="experience-field" value="{{user.profile.experience}}">
+									<div class="error"></div>
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Service providing</label>
+									<select class="form-control" id="service-field" name="service" >
+
+										{% for service in services %}
+										{{service}}
+												<option value="{{service.id}}" {% if service.id == user.profile.service.id %} selected {% endif %}>{{service}}</option>
+
+										{% endfor %}
+									</select>
+									<div class="error"></div>
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Skills</label>
+									<select class="form-control multiple-skills" id="skill-field" name="skill" multiple="multiple" tabindex="0">
+										{% for skill in skills %}
+											<option  value="{{skill.id}}"{% if skill in user.profile.skill.all %} selected {% endif %}>{{skill.name}}</option>
+										{% endfor %}
+
+									</select>
+									<div class="error"></div>
+								</div>
+
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+								  	<label>Bio</label>
+									<textarea class="form-control" name="bio" id="detail-field" rows="4">{{user.profile.bio}}</textarea>
+									<div class="error"></div>
+								</div>
+
+							</div>
+						</div>
+							<div>
+								<button type="submit" class="btn btn-primary update-button">Update</button>
+								<a href="#" class="btn btn-light">Cancel</a>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane fade" id="notification" role="tabpanel" aria-labelledby="notification-tab">
+						<h3 class="mb-4">Notification Settings</h3>
+						<div class="form-group">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="notification1">
+								<label class="form-check-label" for="notification1">
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum accusantium accusamus, neque cupiditate quis
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="notification2" >
+								<label class="form-check-label" for="notification2">
+									hic nesciunt repellat perferendis voluptatum totam porro eligendi.
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="notification3" >
+								<label class="form-check-label" for="notification3">
+									commodi fugiat molestiae tempora corporis. Sed dignissimos suscipit
+								</label>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-primary">Update</button>
+							<button class="btn btn-light">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+
+	<script src="{% static 'lib/select2/js/select2.min.js' %}"></script>
+
+	<script type="text/javascript">
+
+	$(document).ready(function() {
+    	$('.multiple-skills').select2();
+
+	});
+	</script>
+<script type="text/javascript">
+
+	$('.update-button').on('click', function(e){
+       	e.preventDefault();
+       	if(validateInputs()){
+           	$('#update-form').submit();
+       	}
+   	})
+
+
+	const isValidEmail = email => {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    const isValidMobile = (contact) =>{
+        const re = /(\+977)?[9][6-9]\d{8}/;
+        return re.test(contact);
+
+    }
+
+	const setError = (element , message) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+        errorDisplay.innerText = message;
+        inputControl.classList.add('error');
+        inputControl.classList.remove('success');
+
+    }
+    const setSuccess = (element) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+        errorDisplay.innerText = " ";
+        inputControl.classList.add('success');
+        inputControl.classList.remove('error');
+
+    }
+    const validateInputs = () => {
+    	console.log("errorrerere");
+    	const email = document.getElementById('email-field');
+   		const bio = document.getElementById('detail-field');
+   		const address = document.getElementById('location-field');
+   		const contact = document.getElementById('mobile-number');
+   		const gender = document.getElementById('gender-field');
+   		const fee = document.getElementById('charge-field');
+   		const experience = document.getElementById('experience-field');
+        var is_form_valid = true;
+        const emailValue = email.value.trim();
+        const bioValue = bio.value.trim();
+        const addressValue = address.value.trim();
+        const contactValue = contact.value.trim();
+        const genderValue = gender.value.trim();
+        const feeValue = fee.value.trim();
+        const experienceValue = experience.value.trim();
+
+
+        if(emailValue === ''){
+            setError(email, 'Email is required');
+            is_form_valid = false;
+        }
+        else if(!isValidEmail(emailValue)){
+            setError(email, 'Invalid email');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(email);
+        }
+
+        if(bioValue == ''){
+            setError(bio , 'Bio field is required');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(bio)
+        }
+
+        if(addressValue == ''){
+            setError(address , 'Location field is required');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(address);
+        }
+
+        if(contactValue == ''){
+            setError(contact , 'Mobile number field is required');
+            is_form_valid = false;
+        }
+        else if( !isValidMobile(contactValue)){
+            setError(contact , 'Invalid mobile number');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(contact);
+        }
+
+        if(genderValue == ''){
+            setError(gender, 'Service value is required');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(gender);
+        }
+
+
+        if(feeValue == ''){
+            setError(fee, 'fee is required');
+            is_form_valid = false;
+        }
+        else if(feeValue <=0){
+            setError(fee, 'charge should be greater than 0');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(fee);
+        }
+
+        if(experienceValue == ''){
+            setError(experience, 'experience is required');
+            is_form_valid = false;
+        }
+        else if(feeValue <0){
+            setError(experience, 'Experience should be 0 years or more');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(experience);
+        }
+
+        return is_form_valid;
+
+    }
+
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+{% endblock %}

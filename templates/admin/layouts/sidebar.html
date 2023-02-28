@@ -1,0 +1,76 @@
+<div class="wrapper">
+    <div class="body-overlay"></div>
+
+    <!-------sidebar--design------------>
+
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <h3><span>One Stop Solution</span></h3>
+        </div>
+        <ul class="list-unstyled component m-0">
+            <li {% if current_url == 'dashboard' %} class="active" {% endif %}>
+                <a href="{% url 'dashboard' %}" class="dashboard active"
+                ><i class="material-icons">dashboard</i>Dashboard
+                </a>
+            </li>
+
+
+            <li {% if current_url == 'service_list' %} class="active" {% endif %}>
+
+                <a
+                        href = "{% url 'service_list'%}"
+                        class="nav-link"
+
+                >
+                    <i class="fa-solid fa-gears"></i>
+                    Services
+                </a>
+            </li>
+            <li {% if current_url == 'skill_list' %} class="active" {% endif %}>
+                <a
+                        href="{% url 'skill_list' %}"
+                        class="nav-link"
+                >
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    Skills
+                </a>
+            </li>
+            <li {% if current_url == 'user_list' %} class="active" {% endif %}>
+                <a
+                        href="{% url 'user_list' %}"
+                        class="nav-link"
+                >
+                    <i class="fa-solid fa-users"></i>
+                    Clients
+                </a>
+            </li>
+            <li {% if current_url == 'worker_list' %} class="active" {% endif %}>
+                <a
+                        href="{% url 'worker_list' %}"
+                        class="nav-link"
+                >
+                    <i class="fa-sharp fa-solid fa-users"></i>
+                    Workers
+                </a>
+            </li>
+            <li {% if current_url == 'job_list' %} class="active" {% endif %}>
+                <a
+                        href="{% url 'job_list' %}"
+                        class="nav-link"
+                >
+                    <i class="fa-solid fa-list"></i>
+                    Jobs
+                </a>
+            </li>
+            <li {% if current_url == 'query_list' %} class="active" {% endif %}>
+                <a
+                        href="{% url 'query_list' %}"
+                        class="nav-link"
+                >
+                    <i class="fa-sharp fa-solid fa-clipboard-question"></i>
+                    Queries
+                </a>
+            </li>
+
+        </ul>
+    </div>

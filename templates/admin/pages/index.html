@@ -1,0 +1,345 @@
+{% extends 'admin/master/master.html' %}
+{% load static %}
+
+
+{% block navbar %}
+
+        <!------top-navbar-start----------->
+		<div id="content">
+        <div class="top-navbar">
+            <div class="xd-topbar">
+                <div class="row">
+                    <div
+                            class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center"
+                    >
+                        <div class="xp-menubar">
+                            <span class="material-icons text-white">signal_cellular_alt</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 col-lg-3 order-3 order-md-2">
+                        <div class="xp-searchbar">
+                            <form>
+                                <div class="input-group">
+                                    <input
+                                            type="search"
+                                            class="form-control"
+                                            placeholder="Search"
+                                    />
+                                    <div class="input-group-append">
+                                        <button class="btn" type="submit" id="button-addon2">
+                                            Go
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                        <div class="xp-profilebar text-right">
+                            <nav class="navbar p-0">
+                                <ul class="nav navbar-nav flex-row ml-auto">
+                                    <li class="dropdown nav-item active">
+                                        <a class="nav-link" href="#" data-toggle="dropdown">
+                                            <span class="material-icons">notifications</span>
+                                            <span class="notification">4</span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">You Have 4 New Messages</a></li>
+                                            <li><a href="#">You Have 4 New Messages</a></li>
+                                            <li><a href="#">You Have 4 New Messages</a></li>
+                                            <li><a href="#">You Have 4 New Messages</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">
+                                            <span class="material-icons">question_answer</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="dropdown nav-item">
+                                        <a class="nav-link" href="#" data-toggle="dropdown">
+                                            <img
+                                                    src="img/user.jpg"
+                                                    alt="admin"
+                                                    style="width: 40px; border-radius: 50%"
+                                            />
+                                            <span class="xp-user-live"></span>
+                                        </a>
+                                        <ul class="dropdown-menu small-menu">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="material-icons">person_outline</span>
+                                                    Profile
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="material-icons">settings</span>
+                                                    Settings
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="material-icons">logout</span>
+                                                    Logout
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="xp-breadcrumbbar text-center">
+                    <h4 class="page-title">Dashboard</h4>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">One Stop Solution</a></li>
+                        <li class="breadcrumb-item active" aria-curent="page">Dashboard</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!------top-navbar-end----------->
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    radius-10 {
+    border-radius: 10px !important;
+}
+
+.border-info {
+    border-left: 5px solid  #0dcaf0 !important;
+}
+.border-danger {
+    border-left: 5px solid  #fd3550 !important;
+}
+.border-success {
+    border-left: 5px solid  #15ca20 !important;
+}
+.border-warning {
+    border-left: 5px solid  #ffc107 !important;
+}
+
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0px solid rgba(0, 0, 0, 0);
+    border-radius: .25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+}
+.bg-gradient-scooter {
+    background: #17ead9;
+    background: -webkit-linear-gradient(
+45deg
+ , #17ead9, #6078ea)!important;
+    background: linear-gradient(
+45deg
+ , #17ead9, #6078ea)!important;
+}
+.widgets-icons-2 {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ededed;
+    font-size: 27px;
+    border-radius: 10px;
+}
+.rounded-circle {
+    border-radius: 50%!important;
+}
+.text-white {
+    color: #fff!important;
+}
+.ms-auto {
+    margin-left: auto!important;
+}
+.bg-gradient-bloody {
+    background: #f54ea2;
+    background: -webkit-linear-gradient(
+45deg
+ , #f54ea2, #ff7676)!important;
+    background: linear-gradient(
+45deg
+ , #f54ea2, #ff7676)!important;
+}
+
+.bg-gradient-ohhappiness {
+    background: #00b09b;
+    background: -webkit-linear-gradient(
+45deg
+ , #00b09b, #96c93d)!important;
+    background: linear-gradient(
+45deg
+ , #00b09b, #96c93d)!important;
+}
+
+.bg-gradient-blooker {
+    background: #ffdf40;
+    background: -webkit-linear-gradient(
+45deg
+ , #ffdf40, #ff8359)!important;
+    background: linear-gradient(
+45deg
+ , #ffdf40, #ff8359)!important;
+}
+
+</style>
+
+<div class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Orders</p>
+                            <h4 class="my-1 text-info">4805</h4>
+                            <p class="mb-0 font-13">+2.5% from last week</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i
+                                class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-danger">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Revenue</p>
+                            <h4 class="my-1 text-danger">$84,245</h4>
+                            <p class="mb-0 font-13">+5.4% from last week</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
+                                class="fa fa-dollar"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-success">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Bounce Rate</p>
+                            <h4 class="my-1 text-success">34.6%</h4>
+                            <p class="mb-0 font-13">-4.5% from last week</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i
+                                class="fa fa-bar-chart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-warning">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Customers</p>
+                            <h4 class="my-1 text-warning">{{users}}</h4>
+                            <p class="mb-0 font-13">+8.4% from last week</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i
+                                class="fa fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Workers</p>
+                            <h4 class="my-1 text-info">{{profiles}}</h4>
+                            <p class="mb-0 font-13">+2.5% from last week</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i
+                                class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Jobs</p>
+                            <h4 class="my-1 text-info">{{jobs}}</h4>
+                            <p class="mb-0 font-13">+2.5% from last week</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i
+                                class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Services</p>
+                            <h4 class="my-1 text-info">{{services}}</h4>
+                            <p class="mb-0 font-13">+2.5% from last week</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i
+                                class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Skills</p>
+                            <h4 class="my-1 text-info">{{skills}}</h4>
+                            <p class="mb-0 font-13">+2.5% from last week</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i
+                                class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+{% endblock %}

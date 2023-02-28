@@ -1,0 +1,96 @@
+{% extends 'admin/master/master.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+			    <div class="col-md-12">
+					   <div class="table-wrapper">
+
+					   <div class="table-title">
+					     <div class="row">
+						     <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
+							    <h2 class="ml-lg-2">Jobs</h2>
+							 </div>
+
+					     </div>
+					   </div>
+
+					   <table class="table table-striped table-hover">
+					      <thead>
+						     <tr>
+								 <th>S.N</th>
+								 <th>Title</th>
+								 <th>Posted by</th>
+							 	 <th>Posted on</th>
+							 	 <th>Last updated on</th>
+								 <th>Valid Until</th>
+								 <th>Actions</th>
+							 </tr>
+						  </thead>
+
+						  <tbody>
+						  {% for job in jobs %}
+
+						  <tr>
+							 <th>{{forloop.counter}}</th>
+							 <th>{{job.title}}</th>
+							 <th>{{job.postedby.username}}</th>
+							 <th>{{job.posted_on}}</th>
+								  <th>{{job.modified_on}}</th>
+								  <th>{{job.deadline}}</th>
+							 <th>
+
+							   <a class="text-info"  data-toggle="modal" data-target="#viewJobModal" data-remote="{% url 'job_detail' job.id %}">
+                        			<i class="fa-solid fa-eye" data-toggle="tooltip" title="view"></i>
+                    			</a>
+							 </th>
+							 </tr>
+						  {% endfor %}
+						  </tbody>
+
+					   </table>
+
+					   <div class="clearfix">
+					     <div class="hint-text">showing <b>{{jobs.count}}</b> out of <b>{{jobs.count}}</b></div>
+					     <ul class="pagination">
+						    <li class="page-item disabled"><a href="#">Previous</a></li>
+							<li class="page-item "><a href="#"class="page-link">1</a></li>
+							<li class="page-item "><a href="#"class="page-link">2</a></li>
+							<li class="page-item active"><a href="#"class="page-link">3</a></li>
+							<li class="page-item "><a href="#"class="page-link">4</a></li>
+							<li class="page-item "><a href="#"class="page-link">5</a></li>
+							<li class="page-item "><a href="#" class="page-link">Next</a></li>
+						 </ul>
+					   </div>
+
+				</div>
+			</div>
+
+
+<!----view-modal start--------->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" id="viewJobModal" >
+    <div class="modal-dialog" style="max-width: 60%;" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/popper.js' %}"></script>
+
+<script>
+    $("#viewJobModal").on("shown.bs.modal", function(e){
+        var button = $(e.relatedTarget)
+        var modal = $(this)
+        modal.find(".modal-content").load(button.data("remote"))
+    })
+</script>
+
+<!----view-modal end--------->
+
+{% endblock %}
+
+

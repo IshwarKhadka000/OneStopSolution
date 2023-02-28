@@ -1,0 +1,60 @@
+
+            <div class="modal-header">
+                <h5 class="modal-title">Query Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex">
+                    <div>
+                        <h6>Sent by:</h6>
+                    </div>
+                    <div>
+                        <p>{{query.name}}</p>
+                    </div>
+
+                </div>
+                <div class="d-flex">
+                    <div>
+                        <h6>Sent on:</h6>
+                    </div>
+                    <div>
+                        <p>{{query.sent_on}}</p>
+                    </div>
+
+                </div>
+                <div class="d-flex">
+                    <div>
+                        <h6>Sent from:</h6>
+                    </div>
+                    <div>
+                        <p>{{query.email}}</p>
+                    </div>
+
+                </div>
+                <div class="d-flex">
+                    <div>
+                        <h6>Subject:</h6>
+                    </div>
+                    <div>
+                        <p>{{query.subject}}</p>
+                    </div>
+
+                </div>
+
+                <div class="d-flex">
+                    <div>
+                        <h6>Message:</h6>
+                    </div>
+                    <div>
+                        <p>{{query.message}}</p>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>

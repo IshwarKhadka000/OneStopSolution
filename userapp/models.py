@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 # models
 class Service(models.Model):
     name = models.CharField(max_length=100)
+    created_on = models.DateField(auto_now_add=True,blank=True)
+    updated_on = models.DateField(auto_now = True, blank=True)
 
     def __str__(self):
         return self.name
@@ -13,7 +15,8 @@ class Service(models.Model):
 
 class Skill(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
-
+    created_on = models.DateField(auto_now_add=True, blank=True, null=True)
+    updated_on = models.DateField(auto_now=True, blank=True, null=True)
     def __str__(self):
         return self.name
 

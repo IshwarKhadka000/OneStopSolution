@@ -1,0 +1,279 @@
+{% extends 'user/master/master.html' %}
+{% load static %}
+{% block content %}
+<style>
+
+.wrap {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24); }
+  .wrap .img {
+    height: 200px; }
+
+.form-wrap {
+  position: relative; }
+  .login-wrap h3 {
+    font-weight: 300; }
+
+
+.form-floating.success input{
+	border-color: #09c372;
+}
+
+.form-floating.error input{
+	border-color: #ff3860;
+}
+
+.form-floating .error{
+	color: #ff3860;
+	font-size :  9px;
+	height : 13px;
+}
+</style>
+
+<!-- Worker profile Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Post a new Job</h1>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-10">
+                        <div class="wrap">
+                            <div class="form-wrap p-4 p-md-5 wow fadeInUp" data-wow-delay="0.5s">
+                            <form id="postajob-form" class="posta-form" enctype="multipart/form-data" action="" method="POST">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="title" id="title-field" placeholder="Job title">
+                                            <label for="title-field">Job title</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="location" id="location-field" placeholder="Your location">
+                                            <label for="location-field">Your location</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="timetocomplete" id="timetocomplete-field" placeholder="Time to complete the job(in hours)">
+                                            <label for="timetocomplete-field">Time to complete the job in hours</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="payment" id="payment-field" placeholder="You will be paying rs:">
+                                            <label for="payment-field">You will be paying rs.</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="date" class="form-control" name="deadline" id="deadline-field" placeholder="deadline">
+                                            <label for="deadline-field">Deadline</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select name="service" id="service-field" class="form-control">
+                                                {% for service in services %}
+                                                    <option value="{{service.id}}">{{service.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <label for="service-field">You are looking for a service of</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12">
+                                        <div class="form-floating form-row">
+                                            <br><select class="form-control multiple-skills" id="skill-field" name="skill" multiple="multiple" tabindex="0">
+                                                {% for skill in skills %}
+                                                    <option value="{{skill.id}}">{{skill}}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <label for="skill-field">Skills required</label>
+                                            <div class="error"></div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="file" id="image-field" name="image" class="form-control" placeholder="Image of the problem" accept="image/jpeg, image/jpeg" >
+                                            <label for="image-field">Upload image of the problem</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea name="description" class="form-control" placeholder="Problem description in detail:" id="jobdetail-field" style="height: 150px"></textarea>
+                                            <label for="jobdetail-field">Problem description in detail</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact End -->
+    </div>
+</section>
+<script src="{% static 'lib/select2/js/select2.min.js' %}"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('.multiple-skills').select2();
+});
+
+</script>
+<script>
+    const jobpostform = document.getElementById('postajob-form');
+    const title = document.getElementById('title-field')
+    const address = document.getElementById('location-field');
+    const timetocomplete = document.getElementById('timetocomplete-field');
+    const payment = document.getElementById('payment-field');
+    const deadline = document.getElementById('deadline-field');
+    const image = document.getElementById('image-field');
+    const description = document.getElementById('jobdetail-field');
+    jobpostform.addEventListener('submit', e => {
+        e.preventDefault();
+        if(validateInputs()){
+            jobpostform.submit();
+        }
+    });
+
+
+    const setError = (element , message) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+        errorDisplay.innerText = message;
+        inputControl.classList.add('error');
+        inputControl.classList.remove('success');
+
+    }
+    const setSuccess = (element) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+        errorDisplay.innerText = "";
+        inputControl.classList.add('success');
+        inputControl.classList.remove('error');
+
+    }
+
+    const isValidNumber = number => {
+        const re = /^(\d*\.)?\d+$/;
+        return re.test(number);
+    }
+
+    const isFutureDate = (idate) => {
+        var today = new Date();
+        idate = new Date(idate);
+        return (idate>today);
+    }
+
+    const validateInputs = () => {
+        var is_form_valid = true;
+        const titleValue = title.value.trim();
+        const addressValue = address.value.trim();
+        const timetocompleteValue = timetocomplete.value.trim();
+        const paymentValue = payment.value.trim();
+        const deadlineValue = deadline.value;
+        const imageValue = image.value;
+        const descriptionValue = description.value.trim();
+
+        if(titleValue == ''){
+            setError(title , 'Bio field is required');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(title)
+        }
+
+        if(addressValue == ''){
+            setError(address , 'Location field is required');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(address);
+        }
+
+        if(timetocompleteValue == ''){
+            setError(timetocomplete , 'Time field is required');
+            is_form_valid = false;
+        }
+        else if(!isValidNumber(timetocompleteValue)){
+            setError(timetocomplete , 'Invalid time field');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(timetocomplete);
+        }
+
+        if(paymentValue == ''){
+            setError(payment, 'Budget field is required');
+            is_form_valid = false;
+        }
+        else if(!isValidNumber(paymentValue)){
+            setError(payment , 'Invalid budget field');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(payment);
+        }
+
+        if(imageValue == ''){
+            setError(image, 'Image is required');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(image);
+        }
+
+        if(deadlineValue == ''){
+            setError(deadline, 'Deadline is required');
+            is_form_valid = false;
+        }
+        else if(!isFutureDate(deadlineValue)){
+            setError(deadline, 'Deadline should be a future date');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(deadline);
+        }
+        if(descriptionValue == ''){
+            setError(description, 'fee is required');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(description);
+        }
+
+        console.log(is_form_valid);
+        return is_form_valid;
+
+
+    }
+ </script>
+{% endblock %}
+

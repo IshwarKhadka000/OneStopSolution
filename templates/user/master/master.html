@@ -1,0 +1,21 @@
+{% include 'user/layouts/header.html' %}
+
+{% include 'user/layouts/message.html' %}
+
+{% block content %}
+
+{% endblock %}
+
+{% include 'user/layouts/footer.html' %}
+
+
+<script type="text/javascript">
+
+    function hideDiv(){
+        document.getElementById("msg").style.display = "none";
+    }
+
+    setTimeout(hideDiv, 3000);
+
+
+</script>
