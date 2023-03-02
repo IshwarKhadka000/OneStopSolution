@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'userapp', 'adminapp',
     'django_select2',
     'django_cleanup.apps.CleanupConfig',
+
 ]
 
 MIDDLEWARE = [

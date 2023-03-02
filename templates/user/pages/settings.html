@@ -75,18 +75,18 @@
 							<i class="fa-solid fa-list text-center mr-1"></i>
 							Applied Jobs
 						</a>
-						<a class="nav-link" id="jobs-conpleted-tab" data-toggle="pill" href="#account" role="tab" aria-controls="jobs-completed" aria-selected="true">
+						<a class="nav-link" id="jobs-conpleted-tab" data-toggle="pill" href="#jobscompleted" role="tab" aria-controls="jobs-completed" aria-selected="true">
 							<i class="fa-solid fa-list-check text-center mr-1"></i>
 							Completed Jobs
 						</a>
-						<a class="nav-link" id="jobs-posted-tab" data-toggle="pill" href="#account" role="tab" aria-controls="jobs-posted" aria-selected="true">
-							<i class="fa-solid fa-pen-to-square text-center mr-1"></i>
-							Posted Jobs
+						<a class="nav-link" id="hire-tab" data-toggle="pill" href="#hirerequests" role="tab" aria-controls="account" aria-selected="true">
+							<i class="fa-sharp fa-solid fa-calendar-check mr-1"></i>
+							Hire requests
 						</a>
 
 						<a class="nav-link" id="notification-tab" data-toggle="pill" href="#notification" role="tab" aria-controls="notification" aria-selected="false">
 							<i class="fa fa-bell text-center mr-1"></i>
-							Notification
+							Notifications
 						</a>
 					</div>
 				</div>
@@ -201,6 +201,57 @@
 								<a href="#" class="btn btn-light">Cancel</a>
 							</div>
 						</form>
+					</div>
+					<div class="tab-pane fade" id="jobsapplied" role="tabpanel" aria-labelledby="appliedjobs-tab">
+						<h3 class="mb-4">Applied Jobs</h3>
+						<div>
+							{% if proposals %}
+								{% for proposal in proposals %}
+
+									            <div class="job-item p-4 mb-4">
+                									<div class="row g-4">
+                        								<div class="col-sm-12 col-md-8 d-flex align-items-center">
+                            								<img alt="" class="flex-shrink-0 img-fluid border rounded" src="{{proposal.applied_to.image.url}}"
+                                 							style="width: 80px; height: 80px;">
+                            								<div class="text-start ps-4">
+                                    								<a href="">
+                                        								<h5 class="mb-3">{{proposal.applied_to.title}}</h5>
+                                    								</a>
+                                									<span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{proposal.applied_to.location}}</span>
+																<span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>{{proposal.applied_to.payment}}</span>
+                            								</div>
+                        								</div>
+													<div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+                            					<div class="d-flex mb-3">
+
+                                    						<a class="btn btn-primary" href="">View Details</a>
+                            						</div>
+                            						<small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Applied on:{{proposal.applied_on}}
+                                					</small>
+                        						</div>
+						</div>
+            </div>
+
+
+
+								{% endfor %}
+							{% else %}
+								<p>no applied jobs</p>
+							{% endif %}
+
+						</div>
+					</div>
+					<div class="tab-pane fade" id="jobscompleted" role="tabpanel" aria-labelledby="completedjobs-tab">
+						<h3 class="mb-4">Completed Jobs</h3>
+						<div>
+							<p>jobs completed</p>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="hirerequests" role="tabpanel" aria-labelledby="hirerequests-tab">
+						<h3 class="mb-4">Hire Requests</h3>
+						<div>
+							<p>Hire requests</p>
+						</div>
 					</div>
 					<div class="tab-pane fade" id="notification" role="tabpanel" aria-labelledby="notification-tab">
 						<h3 class="mb-4">Notification Settings</h3>

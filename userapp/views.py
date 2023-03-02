@@ -1,11 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import Q
-from django.http import JsonResponse
-from django.shortcuts import render, redirect
-from django.template.loader import render_to_string
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView, TemplateView
@@ -35,10 +34,11 @@ class SettingView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        profile_id = self.request.user.profile
+        context['proposals'] = Proposal.objects.filter(applied_by=profile_id)
         context['services'] = Service.objects.all()
         context['skills'] = Skill.objects.all()
         return context
-
 
 
 class JobListView(ListView):
@@ -66,7 +66,6 @@ class FilterJobListView(View):
             queryset = set(queryset.filter(experience__lte=5, experience__gte=3).values_list('id', flat=True))
         if value == 4:
             queryset = set(queryset.filter(experience__gte=5).values_list('id', flat=True))
-        print(queryset)
         return queryset
 
     def get_queryset(self):
@@ -136,7 +135,6 @@ class FilterTalentListView(View):
             queryset = set(queryset.filter(experience__lte=5, experience__gte=3).values_list('id', flat=True))
         if value == 4:
             queryset = set(queryset.filter(experience__gte=5).values_list('id', flat=True))
-        print(queryset)
         return queryset
 
     def get_queryset(self):
@@ -147,8 +145,7 @@ class FilterTalentListView(View):
             service = list(map(int, self.request.GET.getlist('service[]')))
             experience = list(map(int, self.request.GET.getlist('experience[]')))
             skill = list(map(int, self.request.GET.getlist('skill[]')))
-            rating = self.request.GET.get('rating')
-            print(skill)
+
             if experience:
                 main_set = set()
                 set_1 = set()
@@ -198,6 +195,35 @@ class JobDetailView(DetailView):
     model = Job
     template_name = 'user/pages/job-detail.html'
     context_object_name = 'job'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        job_id = self.object.id
+        user = self.request.user.profile
+        context['has_applied'] = Proposal.objects.filter(applied_to=job_id, applied_by=user).exists()
+        context['proposals'] = Proposal.objects.filter(applied_to=job_id).count()
+        print(context)
+        return context
+
+
+class JobProposalCreateView(CreateView):
+    model = Proposal
+    form_class = SendProposalForm
+
+    def get_job(self):
+        job_obj = get_object_or_404(Job, pk=self.kwargs.get('jobid'))
+        return job_obj
+
+    def form_valid(self, form):
+        job_id = self.get_job()
+        form.instance.applied_by = self.request.user.profile
+        form.instance.applied_to = job_id
+        form.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        messages.success(self.request, "Proposal sent successfully")
+        return reverse_lazy('jobdetail', kwargs={'pk': self.kwargs.get('jobid')})
 
 
 class TestimonialView(TemplateView):
@@ -268,7 +294,6 @@ class BecomeWorkerView(FormView):
         return redirect('index')
 
 
-
 class WorkerProfileUpdateView(UpdateView):
     form_class = WorkerProfileForm
     queryset = Profile.objects.all()
@@ -281,9 +306,8 @@ class WorkerProfileUpdateView(UpdateView):
         profile.save()
         skills = form.cleaned_data.get('skill')
         if skills:
-            print("===skilll===",skills)
             pass
-            s=profile.skill.all()
+            s = profile.skill.all()
             if s:
                 profile.skill.remove(*s)
             profile.skill.add(
@@ -320,7 +344,6 @@ class JobPostView(FormView):
         job.save()
         skills = form.cleaned_data['skill']
         job.skill.add(*skills)
-        print('Hereee')
         messages.success(self.request, 'New job created successfully')
         return redirect('index')
 
@@ -330,3 +353,12 @@ class ContactView(SuccessMessageMixin, CreateView):
     template_name = 'user/pages/contact.html'
     success_url = reverse_lazy('index')
     success_message = 'Query submitted successfully !! We will get back to you as soon as possible'
+
+
+class SendProposalView(CreateView):
+    model = Proposal
+    form_class = SendProposalForm
+
+
+
+

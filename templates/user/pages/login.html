@@ -204,6 +204,8 @@
 }
 
 
+
+
 </style>
 
 <section class="ftco-section">
@@ -214,64 +216,90 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-7 col-lg-5">
+
+            <div class="col-md-10 col-lg-10 row d-flex">
+
                 <div class="wrap">
-                    <div class="img" style="background-image: url(static/img/register.png);"></div>
-                    <div class="login-wrap p-4 p-md-5">
-                        <div class="d-flex">
-                            <div class="w-100">
-                                <h3 class="mb-4">Sign In</h3>
+
+                    <div class="login-wrap p-4 p-md-6">
+                        <div class="d-flex flex-row flex-wrap justify-content-between align-items-center">
+                            <div class="col-lg-6 order-lg-1 col-sm-12 order-sm-2">
+                                <img src="/static/img/login.png" alt="Image" class="img-fluid">
                             </div>
-                            <div class="w-100">
-                                <p class="social-media d-flex justify-content-end">
-                                    <a class="social-icon d-flex align-items-center justify-content-center"
-                                       href="#"><span><i
-                                            class="fa-brands fa-facebook"></i></span></a>
-                                    <a class="social-icon d-flex align-items-center justify-content-center"
-                                       href="#"><span><i
-                                            class="fa-brands fa-google"></i></span></a>
-                                </p>
+                            <div class="col-lg-6 order-lg-2 col-sm-12 order-sm-1">
+
+
+
+                                    <div class="d-flex">
+                                        <div class="w-100">
+                                            <h3 class="mb-4 text-center">Sign In</h3>
+                                        </div>
+                                        <div class="w-100">
+                                            <p class="social-media d-flex justify-content-end">
+                                                <a class="social-icon d-flex align-items-center justify-content-center"
+                                                   href="#"><span><i
+                                                        class="fa-brands fa-facebook"></i></span></a>
+                                                <a class="social-icon d-flex align-items-center justify-content-center"
+                                                   href="#"><span><i
+                                                        class="fa-brands fa-google"></i></span></a>
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                    <form action="" autocomplete="off" id="signin-form" class="signin-form m-5"
+                                          method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-group mt-3">
+                                            <input autocomplete="off" class="form-control" type="text" name="username"
+                                                   id="username-field">
+                                            <label class="form-control-placeholder">Username</label>
+                                            <div class="error"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input autocomplete="off" class="form-control" name="password"
+                                                   id="password-field"
+                                                   type="password">
+                                            <label class="form-control-placeholder">Password</label>
+                                            <span class="fa fa-fw fa-eye field-icon toggle-password"
+                                                  toggle="#password-field"></span>
+                                            <div class="error"></div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <button class="form-control btn btn-primary rounded submit px-3"
+                                                    type="submit">
+                                                Sign In
+                                            </button>
+                                        </div>
+
+                                        <div class="form-group d-md-flex">
+                                            <div class="w-50 text-left">
+                                                <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+                                                    <input type="checkbox" checked>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                            <div class="w-50 text-md-right">
+                                                <a href="#">Forgot Password</a>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                    <p class="text-center">Not a member? <a data-toggle="tab"
+                                                                            href="{% url 'registration' %}">Sign Up</a>
+                                    </p>
+
                             </div>
                         </div>
-                        <form action="" autocomplete="off" id="signin-form" class="signin-form" method="POST">
-                            {% csrf_token %}
-                            <div class="form-group mt-3">
-                                <input autocomplete="off" class="form-control" type="text" name="username" id="username-field">
-                                <label class="form-control-placeholder">Username</label>
-                                <div class="error"></div>
-                            </div>
-
-                            <div class="form-group">
-                                <input autocomplete="off" class="form-control" name="password" id="password-field"
-                                       type="password">
-                                <label class="form-control-placeholder">Password</label>
-                                <span class="fa fa-fw fa-eye field-icon toggle-password"
-                                      toggle="#password-field"></span>
-                                <div class="error"></div>
-                            </div>
 
 
-                            <div class="form-group">
-                                <button class="form-control btn btn-primary rounded submit px-3" type="submit">Sign In
-                                </button>
-                            </div>
-
-		            <div class="form-group d-md-flex">
-		            	<div class="w-50 text-left">
-			            	<label class="checkbox-wrap checkbox-primary mb-0">Remember Me
-									  <input type="checkbox" checked>
-									  <span class="checkmark"></span>
-										</label>
-									</div>
-									<div class="w-50 text-md-right">
-										<a href="#">Forgot Password</a>
-									</div>
-		            </div>
-
-                        </form>
-                        <p class="text-center">Not a member? <a data-toggle="tab" href="{% url 'registration' %}">Sign Up</a></p>
                     </div>
-                </div>
+
+
+
+        </div>
             </div>
         </div>
     </div>
@@ -358,6 +386,8 @@ $(document).ready(function(){
         return is_form_valid;
     }
 });
+
+
 
 </script>
 {% endblock %}

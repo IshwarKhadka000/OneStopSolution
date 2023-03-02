@@ -203,6 +203,7 @@
 	height : 13px;
 }
 
+
 </style>
 
 <section class="ftco-section">
@@ -213,69 +214,84 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-7 col-lg-5">
+            <div class="col-md-10 col-lg-10 row d-flex">
                 <div class="wrap">
-                    <div class="img" style="background-image: url(static/img/register.png);"></div>
                     <div class="login-wrap p-4 p-md-5">
-                        <div class="d-flex">
-                            <div class="w-100">
-                                <h3 class="mb-4">Sign Up</h3>
+                        <div class="d-flex flex-row flex-wrap justify-content-between align-items-center">
+                            <div class="col-lg-6 order-lg-1 col-sm-12 order-sm-2 mp-3">
+                                <img src="/static/img/register.png" alt="Image" class="img-fluid">
                             </div>
-                            <div class="w-100">
-                                <p class="social-media d-flex justify-content-end">
-                                    <a class="social-icon d-flex align-items-center justify-content-center"
-                                       href="#"><span><i
-                                            class="fa-brands fa-facebook"></i></span></a>
-                                    <a class="social-icon d-flex align-items-center justify-content-center"
-                                       href="#"><span><i
-                                            class="fa-brands fa-google"></i></span></a>
-                                </p>
+                            <div class="col-lg-6 order-lg-2 col-sm-12 order-sm-1">
+
+                                <div class="d-flex">
+                                    <div class="w-100">
+                                        <h3 class="mb-4">Sign Up</h3>
+                                    </div>
+                                    <div class="w-100">
+                                        <p class="social-media d-flex justify-content-end">
+                                            <a class="social-icon d-flex align-items-center justify-content-center"
+                                               href="#"><span><i
+                                                    class="fa-brands fa-facebook"></i></span></a>
+                                            <a class="social-icon d-flex align-items-center justify-content-center"
+                                               href="#"><span><i
+                                                    class="fa-brands fa-google"></i></span></a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <form action=#" autocomplete="off" id="signup-form" class="signup-form" method="POST">
+                                    {% csrf_token %}
+                                    <div class="form-group mt-3">
+                                        <input autocomplete="off" class="form-control" name="first_name"
+                                               id="firstname-field" type="text">
+                                        <label class="form-control-placeholder">Firstname</label>
+                                        <div class="error"></div>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <input autocomplete="off" class="form-control" name="last_name"
+                                               id="lastname-field" type="text">
+                                        <label class="form-control-placeholder">Lastname</label>
+                                        <div class="error"></div>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <input autocomplete="off" class="form-control" name="username"
+                                               id="username-field" type="text">
+                                        <label class="form-control-placeholder">Username</label>
+                                        <div class="error">{{form.username.errors}}</div>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <input autocomplete="off" class="form-control" name="email" id="email-field"
+                                               type="email">
+                                        <label class="form-control-placeholder">Email</label>
+                                        <div class="error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input autocomplete="off" class="form-control" id="password-field"
+                                               name="password1" type="password">
+                                        <label class="form-control-placeholder">Password</label>
+                                        <span class="fa fa-fw fa-eye field-icon toggle-password"
+                                              toggle="#password-field"></span>
+                                        <div class="error"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input autocomplete="off" class="form-control" id="password-field1"
+                                               name="password2" type="password">
+                                        <label class="form-control-placeholder">Password again</label>
+                                        <span class="fa fa-fw fa-eye field-icon toggle-password1"
+                                              toggle="#password-field1"></span>
+                                        <div class="error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="form-control btn btn-primary rounded submit px-3" type="submit">
+                                            Sign Up
+                                        </button>
+                                    </div>
+
+                                </form>
+                                <p class="text-center">Already a member? <a data-toggle="tab" href="{% url 'login' %}">Sign
+                                    In</a></p>
                             </div>
                         </div>
-                        <form action=#" autocomplete="off" id="signup-form" class="signup-form" method="POST">
-                            {% csrf_token %}
-                            <div class="form-group mt-3">
-                                <input autocomplete="off" class="form-control" name="first_name" id="firstname-field" type="text">
-                                <label class="form-control-placeholder">Firstname</label>
-                                <div class="error"></div>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input autocomplete="off" class="form-control" name="last_name" id="lastname-field" type="text">
-                                <label class="form-control-placeholder">Lastname</label>
-                                <div class="error"></div>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input autocomplete="off" class="form-control" name="username" id="username-field" type="text">
-                                <label class="form-control-placeholder">Username</label>
-                                <div class="error">{{form.username.errors}}</div>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input autocomplete="off" class="form-control" name="email" id="email-field" type="email">
-                                <label class="form-control-placeholder">Email</label>
-                                <div class="error"></div>
-                            </div>
-                            <div class="form-group">
-                                <input autocomplete="off" class="form-control" id="password-field" name="password1" type="password">
-                                <label class="form-control-placeholder">Password</label>
-                                <span class="fa fa-fw fa-eye field-icon toggle-password"
-                                      toggle="#password-field"></span>
-                                <div class="error"></div>
-                            </div>
-
-                            <div class="form-group">
-                                <input autocomplete="off" class="form-control" id="password-field1" name="password2" type="password">
-                                <label class="form-control-placeholder">Password again</label>
-                                <span class="fa fa-fw fa-eye field-icon toggle-password1"
-                                      toggle="#password-field1"></span>
-                                <div class="error"></div>
-                            </div>
-                            <div class="form-group">
-                                <button class="form-control btn btn-primary rounded submit px-3" type="submit">Sign Up
-                                </button>
-                            </div>
-
-                        </form>
-                        <p class="text-center">Already a member? <a data-toggle="tab" href="{% url 'login' %}">Sign In</a></p>
                     </div>
                 </div>
             </div>
@@ -443,6 +459,7 @@ $(document).ready(function(){
     }
 
 });
+
 
 
 </script>

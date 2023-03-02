@@ -30,9 +30,23 @@ class IndexView(TemplateView):
 class ServiceListView(ListView):
     model = Service
     ordering = "id"
+    paginate_by = 1
     template_name = 'admin/pages/services.html'
     context_object_name = 'services'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = context['paginator']
+        page_numbers_range = 5
+        max_index = len(paginator.page_range)
+        current_page = int(self.request.GET.get('page', '1'))
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        if end_index >= max_index:
+            end_index = max_index
+        page_range = paginator.page_range[start_index:end_index]
+        context['page_range'] = page_range
+        return context
 
 class AddServiceView(CreateView):
     model = Service
@@ -61,9 +75,23 @@ class DeleteServiceView(View):
 class SkillListView(ListView):
     model = Skill
     ordering = "id"
+    paginate_by = 1
     template_name = 'admin/pages/skills.html'
     context_object_name = 'skills'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = context['paginator']
+        page_numbers_range = 5
+        max_index = len(paginator.page_range)
+        current_page = int(self.request.GET.get('page', '1'))
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        if end_index >= max_index:
+            end_index = max_index
+        page_range = paginator.page_range[start_index:end_index]
+        context['page_range'] = page_range
+        return context
 
 class AddSkillView(CreateView):
     model = Skill
@@ -90,11 +118,24 @@ class DeleteSkillView(View):
 
 class ClientListView(ListView):
     model = User
+    queryset = User.objects.all().exclude(is_superuser=True).order_by('id')
+    ordering = "id"
+    paginate_by = 1
     template_name = 'admin/pages/clients.html'
+    context_object_name = 'users'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['users'] = User.objects.all().exclude(is_superuser=True).order_by('id')
+        paginator = context['paginator']
+        page_numbers_range = 5
+        max_index = len(paginator.page_range)
+        current_page = int(self.request.GET.get('page', '1'))
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        if end_index >= max_index:
+            end_index = max_index
+        page_range = paginator.page_range[start_index:end_index]
+        context['page_range'] = page_range
         return context
 
 
@@ -108,7 +149,7 @@ class WorkerListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         paginator = context['paginator']
-        page_numbers_range = 3
+        page_numbers_range = 5
         max_index = len(paginator.page_range)
         current_page = int(self.request.GET.get('page', '1'))
         start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
@@ -119,21 +160,55 @@ class WorkerListView(ListView):
         context['page_range'] = page_range
         return context
 
+
 class JobListView(ListView):
     model = Job
+    ordering = "id"
+    paginate_by = 1
     template_name = 'admin/pages/jobs.html'
     context_object_name = 'jobs'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = context['paginator']
+        page_numbers_range = 5
+        max_index = len(paginator.page_range)
+        current_page = int(self.request.GET.get('page', '1'))
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        if end_index >= max_index:
+            end_index = max_index
+        page_range = paginator.page_range[start_index:end_index]
+        context['page_range'] = page_range
+        return context
 
 
 # Query
 class QueryListView(ListView):
     model = Contact
+    ordering = "id"
+    paginate_by = 1
     template_name = 'admin/pages/queries.html'
     context_object_name = 'queries'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = context['paginator']
+        page_numbers_range = 5
+        max_index = len(paginator.page_range)
+        current_page = int(self.request.GET.get('page', '1'))
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        if end_index >= max_index:
+            end_index = max_index
+        page_range = paginator.page_range[start_index:end_index]
+        context['page_range'] = page_range
+        return context
 
 
 class QueryDetailView(DetailView):
     model = Contact
+
     template_name = 'admin/pages/query_detail_model.html'
     context_object_name = "query"
 

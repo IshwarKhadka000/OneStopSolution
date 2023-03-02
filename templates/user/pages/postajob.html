@@ -115,6 +115,13 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea name="requirements" class="form-control" placeholder="Job requirements separated by commas" id="jobrequirements-field" style="height: 150px"></textarea>
+                                            <label for="jobrequirements-field">Job requirements(separate each requirement by a comma(,) )</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
 
                                     <div class="col-12">
                                         <div class="form-floating">
@@ -155,6 +162,7 @@ $(document).ready(function() {
     const payment = document.getElementById('payment-field');
     const deadline = document.getElementById('deadline-field');
     const image = document.getElementById('image-field');
+    const jobrequirements = document.getElementById('jobrequirements-field');
     const description = document.getElementById('jobdetail-field');
     jobpostform.addEventListener('submit', e => {
         e.preventDefault();
@@ -201,6 +209,7 @@ $(document).ready(function() {
         const deadlineValue = deadline.value;
         const imageValue = image.value;
         const descriptionValue = description.value.trim();
+        const jobrequirementsValue = jobrequirements.value
 
         if(titleValue == ''){
             setError(title , 'Bio field is required');
@@ -268,8 +277,13 @@ $(document).ready(function() {
         else{
             setSuccess(description);
         }
-
-        console.log(is_form_valid);
+        if(jobrequirementsValue == ''){
+            setError(jobrequirements, 'requirement is required');
+            is_form_valid = false;
+        }
+        else{
+            setSuccess(jobrequirements);
+        }
         return is_form_valid;
 
 

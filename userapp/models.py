@@ -1,6 +1,6 @@
 from django.db import models
-
 from django.contrib.auth.models import User
+from django.db.models.fields import related
 
 
 # models
@@ -59,17 +59,23 @@ class Job(models.Model):
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     skill = models.ManyToManyField(Skill)
     image = models.ImageField(upload_to='Job/Images', blank=True, null=True)
+    requirements = models.TextField(max_length=2000, blank=True, null=True)
     description = models.TextField(max_length=2000, blank=True, null=True)
-    applied_by = models.ManyToManyField(Profile, blank=True)
     posted_on = models.DateField(auto_now_add=True, null=True)
     modified_on = models.DateField(auto_now=True, null=True)
 
     def __str__(self):
         return self.title
 
-    @property
-    def get_profile_count(self):
-        return self.applied_by.all().count()
+    def requirements_list(self):
+        return self.requirements.split(',')
+
+    # @property
+    # def get_profile_count(self):
+    #     return self.applied_by.all().count()
+    # @property
+    # def get_appliied_by(self):
+    #     return self.applied_by.all()
 
 
 class Contact(models.Model):
@@ -81,3 +87,11 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.subject
+
+
+class Proposal(models.Model):
+    applied_to = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='proposed_job')
+    amount = models.PositiveIntegerField(null=True, blank=True)
+    applied_by = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="applied_profile")
+    applied_on = models.DateField(auto_now_add=True)
+    cover_letter = models.TextField(blank=True, null=True)

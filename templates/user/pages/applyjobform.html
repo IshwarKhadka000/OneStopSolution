@@ -1,0 +1,230 @@
+
+<style>
+
+.wrap {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24); }
+  .wrap .img {
+    height: 200px; }
+
+.applyjob-wrap {
+  position: relative; }
+  .applyjob-wrap h3 {
+    font-weight: 300; }
+
+.form-group {
+  position: relative;
+  z-index: 0;
+  margin-bottom: 20px !important; }
+  .form-group a {
+    color: gray; }
+
+.form-control {
+  height: 48px;
+  background: #fff;
+  color: #000;
+  font-size: 16px;
+  border-radius: 5px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.1); }
+  .form-control::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: rgba(0, 0, 0, 0.2) !important; }
+  .form-control::-moz-placeholder {
+    /* Firefox 19+ */
+    color: rgba(0, 0, 0, 0.2) !important; }
+  .form-control:-ms-input-placeholder {
+    /* IE 10+ */
+    color: rgba(0, 0, 0, 0.2) !important; }
+  .form-control:-moz-placeholder {
+    /* Firefox 18- */
+    color: rgba(0, 0, 0, 0.2) !important; }
+  .form-control:focus, .form-control:active {
+    outline: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid #01d28e; }
+
+.field-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: rgba(0, 0, 0, 0.3); }
+
+.form-control-placeholder {
+  position: absolute;
+  top: 2px;
+  padding: 7px 0 0 15px;
+  -webkit-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms;
+  opacity: .6; }
+
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  -webkit-transform: translate3d(0, -120%, 0);
+  transform: translate3d(0, -120%, 0);
+  padding: 7px 0 0 0;
+  opacity: 1;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #01d28e;
+  font-weight: 700; }
+
+.btn {
+  cursor: pointer;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  font-size: 15px;
+  padding: 10px 20px; }
+  .btn:hover, .btn:active, .btn:focus {
+    outline: none; }
+  .btn.btn-primary {
+    background: #01d28e !important;
+    border: 1px solid #01d28e !important;
+    color: #fff !important; }
+    .btn.btn-primary:hover {
+      border: 1px solid #01d28e;
+      background: transparent;
+      color: #01d28e; }
+    .btn.btn-primary.btn-outline-primary {
+      border: 1px solid #01d28e;
+      background: transparent;
+      color: #01d28e; }
+      .btn.btn-primary.btn-outline-primary:hover {
+        border: 1px solid transparent;
+        background: #01d28e;
+        color: #fff; }
+
+.form-group.success input{
+	border-color: #09c372;
+}
+
+.form-group.error input{
+	border-color: #ff3860;
+}
+
+.form-group .error{
+	color: #ff3860;
+	font-size :  9px;
+	height : 13px;
+}
+
+
+</style>
+
+
+        <div class="row justify-content-center">
+
+                <div class="wrap">
+                    <div class="applyjob-wrap p-4 p-md-5">
+
+                        <form action="{% url 'applytoajob' job.id %}" autocomplete="off" id="jobapply-form" class="jobapply-form" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group mt-3">
+                                <input autocomplete="off" class="form-control" type="text" name="amount" id="amount-field">
+                                <label class="form-control-placeholder">Amount to be paid</label>
+                                <div class="error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea autocomplete="off" class="form-control" name="cover_letter" id="coverletter-field"
+                                ></textarea>
+                                <label class="form-control-placeholder">Cover letter</label>
+                                <div class="error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="form-control btn btn-primary rounded submit px-3" type="submit">Apply Now
+                                </button>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+        </div>
+
+<script type="text/javascript">
+
+
+
+$(document).ready(function(){
+    const jobapplyForm = document.getElementById('jobapply-form');
+    const amount = document.getElementById('amount-field');
+    const coverletter = document.getElementById('coverletter-field');
+
+
+    jobapplyForm.addEventListener('submit', e =>  {
+        e.preventDefault();
+        if(validateInputs()){
+            jobapplyForm.submit();
+        }
+    });
+
+
+
+    const setError = (element , message) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+        errorDisplay.innerText = message;
+        inputControl.classList.add('error');
+        inputControl.classList.remove('success');
+
+    }
+    const setSuccess = (element) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+        errorDisplay.innerText = "";
+        inputControl.classList.add('success');
+        inputControl.classList.remove('error');
+
+    }
+
+    const validateInputs = () =>{
+        var is_form_valid = true;
+        const amountValue = amount.value.trim();
+        const coverletterValue = coverletter.value.trim();
+        if(amountValue === ''){
+            setError(amount, 'Amount is required');
+            is_form_valid = false;
+
+        }
+        else if( amountValue <=0){
+            setError(amount, 'Invalid value');
+            is_form_valid = false;
+
+        }
+        else{
+            setSuccess(amount);
+        }
+
+        if(coverletterValue === ''){
+            setError(coverletter, 'Cover letter is required');
+            is_form_valid = false;
+
+        }
+        else if(coverletterValue.length<50){
+            setError(coverletter, 'Coverletter must be at least 50 characters');
+            is_form_valid = false;
+
+        }
+        else{
+            setSuccess(coverletter);
+        }
+        return is_form_valid;
+    }
+});
+
+</script>
+

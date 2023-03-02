@@ -55,3 +55,17 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ['name', 'email', 'subject', 'message']
+
+
+class SendProposalForm(forms.ModelForm):
+    class Meta:
+        model = Proposal
+        fields = ['applied_to', 'amount', 'applied_by', 'cover_letter']
+
+    def __init__(self, *args, **kwargs):
+        # first call parent's constructor
+        super().__init__(*args, **kwargs)
+        # there's a `fields` property now
+        self.fields['applied_to'].required = False
+        self.fields['applied_by'].required = False
+

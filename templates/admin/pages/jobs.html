@@ -34,7 +34,7 @@
 						  {% for job in jobs %}
 
 						  <tr>
-							 <th>{{forloop.counter}}</th>
+							 <th>{{ page_obj.start_index|add:forloop.counter0 }}</th>
 							 <th>{{job.title}}</th>
 							 <th>{{job.postedby.username}}</th>
 							 <th>{{job.posted_on}}</th>
@@ -53,17 +53,25 @@
 					   </table>
 
 					   <div class="clearfix">
-					     <div class="hint-text">showing <b>{{jobs.count}}</b> out of <b>{{jobs.count}}</b></div>
-					     <ul class="pagination">
-						    <li class="page-item disabled"><a href="#">Previous</a></li>
-							<li class="page-item "><a href="#"class="page-link">1</a></li>
-							<li class="page-item "><a href="#"class="page-link">2</a></li>
-							<li class="page-item active"><a href="#"class="page-link">3</a></li>
-							<li class="page-item "><a href="#"class="page-link">4</a></li>
-							<li class="page-item "><a href="#"class="page-link">5</a></li>
-							<li class="page-item "><a href="#" class="page-link">Next</a></li>
-						 </ul>
-					   </div>
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}"> previous</a></li>
+                {% endif %}
+                {% for page in page_range %}
+                    {% if page == page_obj.number %}
+                    <li class="page-item "><span class="current-page page-link">{{ page }}</span></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+                {% endif %}
+                </ul>
+
+            </div>
+
 
 				</div>
 			</div>
