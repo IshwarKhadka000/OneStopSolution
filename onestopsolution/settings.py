@@ -24,6 +24,14 @@ SECRET_KEY = 'django-insecure-xp1t7+b=a(gx413qn%2#n^wk(88er)j1$pf8@+&!*$4abs#y#c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
+CAPTCHA_SECRET_KEY = '6LewZuIkAAAAAKNVXM0WFGoSuhx3JRXmO3bILUQw'
+CAPTCHA_SITE_KEY = '6LewZuIkAAAAAEzAKDDkBugr9D_zFH9SqGOOS5Sc'
+
+
+
+
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -37,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'userapp', 'adminapp',
     'django_select2',
-    'django_cleanup.apps.CleanupConfig',
+    'django_cleanup.apps.CleanupConfig', 'captcha',
 
 ]
 
@@ -65,6 +73,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'adminapp.context_processors.check_active_sidebar_links',
+                'userapp.context_processors.get_services',
             ],
         },
     },
@@ -130,3 +139,4 @@ MEDIA_URL = 'media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

@@ -10,84 +10,101 @@
                 <div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-								  	<label>First Name</label>
-								  	<input type="text" class="form-control" name="first_name" id="firstname-field" value="{{profile.user.first_name}}" readonly>
+								  	<label>Job title:</label>
+								  	<input type="text" class="form-control" name="first_name" id="firstname-field" value="{{job.title}}" readonly>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-								  	<label>Last Name</label>
-								  	<input type="text" class="form-control" name="last_name" id="lastname-field" value="{{profile.user.last_name}}" readonly>
+								  	<label>Posted by:</label>
+								  	<input type="text" class="form-control" name="last_name" id="lastname-field" value="{{job.postedby}}" readonly>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-								  	<label>Gender</label>
-										<input type="text" class="form-control" name="gender" id="gender-field" value="{{profile.gender}}" readonly>
-								</div>
-
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-								  	<label>Email</label>
-								  	<input type="text" class="form-control" name="email" id="email-field" value="{{profile.user.email}}" readonly>
-
+								  	<label>Posted on:</label>
+										<input type="text" class="form-control" name="gender" id="gender-field" value="{{job.posted_on}}" readonly>
 								</div>
 
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-								  	<label>Phone number</label>
-								  	<input type="text" class="form-control" name="phone_number" id="mobile-number" value="{{profile.phone_number}}" readonly>
+								  	<label>Location:</label>
+								  	<input type="text" class="form-control" name="email" id="email-field" value="{{job.location}}" readonly>
 
 								</div>
 
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-								  	<label>Complete address</label>
-								  	<input type="text" class="form-control" name="location" id="location-field" value="{{profile.location}}" readonly>
+								  	<label>Minimum time rqquired to complete:</label>
+								  	<input type="text" class="form-control" name="phone_number" id="mobile-number" value="{{job.timetocomplete}}" readonly>
 
 								</div>
 
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-								  	<label>Charge per hour</label>
-								  	<input type="text" class="form-control" id="charge-field" name="fee" value="{{profile.fee}}" readonly>
+								  	<label>Years of experience required:</label>
+								  	<input type="text" class="form-control" name="location" id="location-field" value="{{job.experience}}" readonly>
 
 								</div>
 
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-								  	<label>Years of experience</label>
-								  	<input type="text" class="form-control" name="experience" id="experience-field" value="{{profile.experience}}" readonly>
+								  	<label>Budget</label>
+								  	<input type="text" class="form-control" id="charge-field" name="fee" value="{{job.payment}}" readonly>
 
 								</div>
 
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-								  	<label>Service providing</label>
-									<input type="text" class="form-control" name="service" id="service-field" value="{{profile.service}}" readonly>
+								  	<label>Deadline</label>
+								  	<input type="text" class="form-control" name="experience" id="experience-field" value="{{job.deadline}}" readonly>
 
 								</div>
 
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-								  	<label>Skills:</label><br>
-									{% for skill in profile.skill.all%}
+								  	<label>Service category</label>
+									<input type="text" class="form-control" name="service" id="service-field" value="{{job.service}}" readonly>
+
+								</div>
+
+							</div>
+							
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Last updated on:</label>
+									<input type="text" class="form-control" name="service" id="service-field" value="{{job.modified_on}}" readonly>
+
+								</div>
+
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Skills required:</label><br>
+									{% for skill in job.skill.all%}
 										{{skill.name}}
 									{% endfor %}
 								</div>
 
 							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Requirements:</label>
+									<textarea class="form-control" name="requirements" id="detail-field" rows="4" readonly>{{job.requirements}}</textarea>
+
+								</div>
+
+							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-								  	<label>Bio</label>
-									<textarea class="form-control" name="bio" id="detail-field" rows="4" readonly>{{user.profile.bio}}</textarea>
+								  	<label>Description:</label>
+									<textarea class="form-control" name="bio" id="detail-field" rows="4" readonly>{{job.description}}</textarea>
 
 								</div>
 

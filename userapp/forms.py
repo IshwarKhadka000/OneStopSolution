@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import *
 
 
+
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
 
@@ -53,6 +54,7 @@ class JobCreateForm(forms.ModelForm):
 
 class ContactForm(forms.ModelForm):
     class Meta:
+        
         model = Contact
         fields = ['name', 'email', 'subject', 'message']
 

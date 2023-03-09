@@ -1,15 +1,20 @@
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import send_mail
+from django.contrib.auth import get_user_model
+from django.utils.http import urlsafe_base64_decode
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView, TemplateView
 from userapp.forms import *
-
+from captcha.fields import ReCaptchaField
 
 # Create your views here.
 
@@ -19,7 +24,14 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        services = Service.objects.all()
+        service_job_count = []
+        for service in services:
+            job_count = Job.objects.filter(service=service).count()
+            service_job_count.append((service, job_count))
+        context['service_job_count'] = service_job_count
         context['jobs'] = Job.objects.all()
+        context['services'] = services
         return context
 
 
@@ -190,7 +202,30 @@ class TalentDetailView(DetailView):
 class JobCategoryView(TemplateView):
     template_name = 'user/pages/jobcategory.html'
 
+def has_related_object(user):
+    try:
+        user.profile
+        return True
+    except ObjectDoesNotExist:
+        return False
 
+
+class CategoryJobListView(ListView):
+    model = Job
+    template_name = 'user/pages/categoryjob.html'
+    context_object_name = 'jobs'
+
+    def get_queryset(self):
+        service = self.kwargs['service']
+        return Job.objects.filter(service=service)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        service = Service.objects.get(pk=self.kwargs['service'])
+        context['service'] = service
+        return context
+
+    
 class JobDetailView(DetailView):
     model = Job
     template_name = 'user/pages/job-detail.html'
@@ -199,10 +234,13 @@ class JobDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         job_id = self.object.id
-        user = self.request.user.profile
-        context['has_applied'] = Proposal.objects.filter(applied_to=job_id, applied_by=user).exists()
-        context['proposals'] = Proposal.objects.filter(applied_to=job_id).count()
-        print(context)
+        if has_related_object(self.request.user):
+            user = self.request.user.profile
+            context['has_applied'] = Proposal.objects.filter(applied_to=job_id, applied_by=user).exists()
+            context['proposals'] = Proposal.objects.filter(applied_to=job_id).count()
+        else:
+            context['no_profile'] = True
+
         return context
 
 
@@ -264,6 +302,7 @@ class RegistrationView(SuccessMessageMixin, CreateView):
     template_name = 'user/pages/registration.html'
     success_url = reverse_lazy('login')
     success_message = 'User account registered successfully'
+
 
 
 class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
@@ -353,6 +392,21 @@ class ContactView(SuccessMessageMixin, CreateView):
     template_name = 'user/pages/contact.html'
     success_url = reverse_lazy('index')
     success_message = 'Query submitted successfully !! We will get back to you as soon as possible'
+    captcha = ReCaptchaField()
+
+    def form_valid(self, form):
+        if form.is_valid():
+            captcha_response = self.request.POST.get('g-recaptcha-response')
+            if self.captcha.verify(captcha_response):
+                form.send_email()
+                messages.success(self.request, 'Your message has been sent.')
+                return super().form_valid(form)
+            else:
+                messages.error(
+                    self.request, 'Invalid CAPTCHA, please try again.')
+                return self.form_invalid(form)
+        else:
+            return self.form_invalid(form)
 
 
 class SendProposalView(CreateView):
@@ -360,5 +414,11 @@ class SendProposalView(CreateView):
     form_class = SendProposalForm
 
 
+class ClientSettingView(DetailView):
+    model = User
+    template_name = 'user/pages/clientprofile.html'
+    context_object_name = 'user'
 
-
+class NewsLetterSubscribeView(FormView):
+    template_name = 'user/layouts/footer.html'
+    

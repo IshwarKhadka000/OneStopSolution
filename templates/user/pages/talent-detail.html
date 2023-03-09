@@ -16,21 +16,22 @@
                         </div>
 
                         <div class="mb-5">
-
-                            <h4 class="mb-3">Talent's bio</h4>
-                            <p>{{user.profile.bio}}</p>
+                            <div class="mt-5 d-flex">
+                                <p class="p-3"><i class="fa fa-angle-right text-primary me-2"></i>Jobs completed: 0</p>
+                                <p class="p-3"><i class="fa fa-angle-right text-primary me-2"></i>Jobs on progress: 0</p>
+                                <p class="p-3"><i class="fa fa-angle-right text-primary me-2"></i>Jobs incompleted: 0</p>
+                            </div>
                             <h4 class="mb-3">Key Skills</h4>
                             <ul class="list-unstyled">
                             {% for skill in user.profile.skill.all %}
                                 <li><i class="fa fa-angle-right text-primary me-2"></i>{{skill.name}}</li>
                             {% endfor %}
                             </ul>
-
+                            <h4 class="mb-3">Talent's bio</h4>
+                            <p>{{user.profile.bio}}</p>
                         </div>
 
-                        <div class="">
-                            <button class="btn btn-primary w-100" type="submit">Hire Now</button>
-                        </div>
+
                     </div>
                     <div class="col-lg-4">
                         <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
@@ -40,15 +41,14 @@
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Job category: {{user.profile.service}}</p>
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Charge per hour(Rs.): {{user.profile.fee}}</p>
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Location: {{user.profile.location}}</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Gender: {{user.profile.gender}}</p>
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Providing service: {{user.profile.service}}</p>
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Is active: {{user.profile.active}}</p>
                         </div>
                         <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
                             <h4 class="mb-4">Contact details</h4>
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Fullname: {{user.first_name}} {{user.last_name}}</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Email: {{user.email}}</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Mobile number: {{user.profile.phone_number}}</p>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>Email: hidden</p>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>Mobile number: hidden</p>
                         </div>
                     </div>
 

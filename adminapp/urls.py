@@ -5,6 +5,7 @@ urlpatterns = [
 
     # dashboard
     path('', IndexView.as_view(), name="dashboard"),
+    
 
     # services
     path('service_list/', ServiceListView.as_view(), name="service_list"),
@@ -19,6 +20,7 @@ urlpatterns = [
     path('delete_skill/<int:pk>/', DeleteSkillView.as_view(), name="delete_skill"),
 
     # users
+    
     path('user_list/', ClientListView.as_view(), name="user_list"),
 
     # workers

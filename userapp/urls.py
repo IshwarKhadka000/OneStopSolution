@@ -8,6 +8,7 @@ urlpatterns = [
     path('userapp/joblist/', JobListView.as_view(), name="joblist"),
     path('userapp/postajob/', login_required(JobPostView.as_view()), name="postajob"),
     path('userapp/filteredjoblist/', FilterJobListView.as_view(), name="filterjobs"),
+    path('userapp/service/<int:service>/jobs/', CategoryJobListView.as_view(), name="category_jobs"),
     path('userapp/jobdetail/<int:pk>/', JobDetailView.as_view(), name="jobdetail"),
     path('userapp/jobcategory/', JobCategoryView.as_view(), name="jobcategory"),
     path('userapp/testimonial/', TestimonialView.as_view(), name="testimonial"),
@@ -23,5 +24,6 @@ urlpatterns = [
     path('userapp/becomeworker/', login_required(BecomeWorkerView.as_view()), name="becomeworker"),
     path('userapp/updateworkerprofile/<int:pk>/', login_required(WorkerProfileUpdateView.as_view()), name="updateworkerprofile"),
     path('userapp/applytoajob/<int:jobid>', JobProposalCreateView.as_view(), name="applytoajob"),
-
+    path('userapp/clientprofile/<int:pk>/', login_required(ClientSettingView.as_view()), name="clientprofile"),
+    path('userapp/newsletter/', NewsLetterSubscribeView.as_view(), name="newsletter"),
 ]

@@ -69,7 +69,7 @@ class Job(models.Model):
 
     def requirements_list(self):
         return self.requirements.split(',')
-
+    
     # @property
     # def get_profile_count(self):
     #     return self.applied_by.all().count()

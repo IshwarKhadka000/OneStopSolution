@@ -61,7 +61,7 @@
 				<div class="profile-tab-nav border-right">
 					<div class="p-4">
 						<div class="img-circle text-center mb-3">
-							<img src="{{user.profile.image.url}}" alt="Image" class="shadow">
+							<img src="{{user.profile.image.url}}" alt="Image" class="shadow" />
 						</div>
 						<h4 class="text-center">{{user.first_name}} {{user.last_name}}</h4>
 						<p class="text-center">@{{user.username}}</p>
@@ -75,14 +75,12 @@
 							<i class="fa-solid fa-list text-center mr-1"></i>
 							Applied Jobs
 						</a>
-						<a class="nav-link" id="jobs-conpleted-tab" data-toggle="pill" href="#jobscompleted" role="tab" aria-controls="jobs-completed" aria-selected="true">
-							<i class="fa-solid fa-list-check text-center mr-1"></i>
-							Completed Jobs
-						</a>
-						<a class="nav-link" id="hire-tab" data-toggle="pill" href="#hirerequests" role="tab" aria-controls="account" aria-selected="true">
+						<a class="nav-link" id="hire-tab" data-toggle="pill" href="#onprogressjobs" role="tab" aria-controls="onprogressjob" aria-selected="true">
 							<i class="fa-sharp fa-solid fa-calendar-check mr-1"></i>
-							Hire requests
+							Jobs On Progress
 						</a>
+						<a class="nav-link" id="jobs-conpleted-tab" data-toggle="pill" href="#jobscompleted" role="tab" aria-controls="jobs-completed" aria-selected="true"><i class="fa-solid fa-list-check text-center mr-1"></i>Completed Jobs</a>
+
 
 						<a class="nav-link" id="notification-tab" data-toggle="pill" href="#notification" role="tab" aria-controls="notification" aria-selected="false">
 							<i class="fa fa-bell text-center mr-1"></i>
@@ -91,21 +89,21 @@
 					</div>
 				</div>
 				<div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
-					<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
-						<form id="update-form" method="POST" action="{% url 'updateworkerprofile' user.profile.pk %}">
+					<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab" />
+						<form id="update-form" method="post" action="{% url 'updateworkerprofile' user.profile.pk %}" />
 							{% csrf_token %}
 							<h3 class="mb-4">Worker Account Settings</h3>
 							<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>First Name</label>
-								  	<input type="text" class="form-control" name="first_name" id="firstname-field" value="{{user.first_name}}" readonly>
+								  	<input type="text" class="form-control" name="first_name" id="firstname-field" value="{{user.first_name}}" readonly />
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Last Name</label>
-								  	<input type="text" class="form-control" name="last_name" id="lastname-field" value="{{user.last_name}}" readonly>
+								  	<input type="text" class="form-control" name="last_name" id="lastname-field" value="{{user.last_name}}" readonly />
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -122,7 +120,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Email</label>
-								  	<input type="text" class="form-control" name="email" id="email-field" value="{{user.email}}">
+								  	<input type="text" class="form-control" name="email" id="email-field" value="{{user.email}}"/>
 									<div class="error"></div>
 								</div>
 
@@ -130,7 +128,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Phone number</label>
-								  	<input type="text" class="form-control" name="phone_number" id="mobile-number" value="{{user.profile.phone_number}}">
+								  	<input type="text" class="form-control" name="phone_number" id="mobile-number" value="{{user.profile.phone_number}}" />
 									<div class="error"></div>
 								</div>
 
@@ -138,7 +136,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Complete address</label>
-								  	<input type="text" class="form-control" name="location" id="location-field" value="{{user.profile.location}}">
+								  	<input type="text" class="form-control" name="location" id="location-field" value="{{user.profile.location}}" />
 									<div class="error"></div>
 								</div>
 
@@ -146,7 +144,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Charge per hour</label>
-								  	<input type="text" class="form-control" id="charge-field" name="fee" value="{{user.profile.fee}}">
+								  	<input type="text" class="form-control" id="charge-field" name="fee" value="{{user.profile.fee}}"/>
 									<div class="error"></div>
 								</div>
 
@@ -154,7 +152,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Years of experience</label>
-								  	<input type="text" class="form-control" name="experience" id="experience-field" value="{{user.profile.experience}}">
+								  	<input type="text" class="form-control" name="experience" id="experience-field" value="{{user.profile.experience}}" />
 									<div class="error"></div>
 								</div>
 
@@ -200,7 +198,7 @@
 								<button type="submit" class="btn btn-primary update-button">Update</button>
 								<a href="#" class="btn btn-light">Cancel</a>
 							</div>
-						</form>
+					</form>
 					</div>
 					<div class="tab-pane fade" id="jobsapplied" role="tabpanel" aria-labelledby="appliedjobs-tab">
 						<h3 class="mb-4">Applied Jobs</h3>
@@ -214,7 +212,7 @@
                             								<img alt="" class="flex-shrink-0 img-fluid border rounded" src="{{proposal.applied_to.image.url}}"
                                  							style="width: 80px; height: 80px;">
                             								<div class="text-start ps-4">
-                                    								<a href="">
+                                    								<a href="{% url 'jobdetail' proposal.applied_to.id %}">
                                         								<h5 class="mb-3">{{proposal.applied_to.title}}</h5>
                                     								</a>
                                 									<span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{proposal.applied_to.location}}</span>
@@ -224,7 +222,7 @@
 													<div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                             					<div class="d-flex mb-3">
 
-                                    						<a class="btn btn-primary" href="">View Details</a>
+                                    						<a class="btn btn-primary" href="{% url 'jobdetail' proposal.applied_to.id %}">View Details</a>
                             						</div>
                             						<small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Applied on:{{proposal.applied_on}}
                                 					</small>
@@ -238,7 +236,7 @@
 							{% else %}
 								<p>no applied jobs</p>
 							{% endif %}
-
+							
 						</div>
 					</div>
 					<div class="tab-pane fade" id="jobscompleted" role="tabpanel" aria-labelledby="completedjobs-tab">
@@ -247,8 +245,8 @@
 							<p>jobs completed</p>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="hirerequests" role="tabpanel" aria-labelledby="hirerequests-tab">
-						<h3 class="mb-4">Hire Requests</h3>
+					<div class="tab-pane fade" id="onprogressjobs" role="tabpanel" aria-labelledby="onprogressjobs-tab">
+						<h3 class="mb-4">Jobs on progress</h3>
 						<div>
 							<p>Hire requests</p>
 						</div>

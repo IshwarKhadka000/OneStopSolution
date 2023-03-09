@@ -34,13 +34,18 @@
                                         {% endfor %}
                                     </ul>
                         </div>
-                        {% if has_applied %}
-                            <div class="col-12">
-                                <button class="btn btn-secondary w-100" disabled>Already applied</button>
-                            </div>
+                        {% if not no_profile %}
+                            {% if has_applied %}
+                                <div class="col-12">
+                                    <button class="btn btn-secondary w-100" disabled>Already applied</button>
+                                </div>
+                                {% else %}
+                                    {% include 'user/pages/applyjobform.html' %}
+                            {% endif %}
                         {% else %}
-                            {% include 'user/pages/applyjobform.html' %}
-
+                            <div class="col-12">
+                                <a  href="{% url 'becomeworker' %}" class="btn btn-secondary w-100">Become Worker</a>
+                            </div>
                         {% endif %}
                     </div>
 

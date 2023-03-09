@@ -95,7 +95,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="subject-field" name="subject" placeholder="Subject">
+                                                <input type="text" class="form-control" id="subject-field" name="subject" placeholder="Subject">
                                             <label for="subject-field">Subject</label>
                                             <div class="error"></div>
                                         </div>
@@ -104,6 +104,12 @@
                                         <div class="form-floating">
                                             <textarea class="form-control" placeholder="Leave a message here" id="message-field" name="message" style="height: 150px"></textarea>
                                             <label for="message-field">Message</label>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_SITE_KEY }}"></div>
                                             <div class="error"></div>
                                         </div>
                                     </div>
@@ -118,7 +124,10 @@
             </div>
         </div>
         <!-- Contact End -->
+
 <script type="text/javascript">
+
+
 
 $(document).ready(function(){
     const contactform = document.getElementById('contact-form');

@@ -1,20 +1,20 @@
 from django.contrib import messages
 from django.contrib.messages import success
 from django.http import JsonResponse
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, DetailView, View, UpdateView, CreateView, ListView, UpdateView, \
-    DeleteView
+from django.views.generic import TemplateView, DetailView, View, UpdateView, CreateView, ListView, UpdateView, DeleteView
 from djlint import Config
-
 from adminapp.forms import *
 from userapp.models import *
-
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 # Create your views here.
+
+
 class IndexView(TemplateView):
     template_name = 'admin/pages/index.html'
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['users'] = User.objects.exclude(is_superuser=True).count()
