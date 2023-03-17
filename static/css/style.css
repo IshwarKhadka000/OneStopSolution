@@ -391,3 +391,10 @@
     padding-right: 0;
     border-right: none;
 }
+
+.img-logo {
+    object-fit: cover;
+    padding-left: 20px;
+    margin-top: -5px;
+    zoom: 1.1
+}

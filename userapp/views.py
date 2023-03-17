@@ -1,20 +1,21 @@
-from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import send_mail
-from django.contrib.auth import get_user_model
-from django.utils.http import urlsafe_base64_decode
+from datetime import datetime
+from urllib.parse import urlencode
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponseRedirect
+from django.db.models import Avg
+from django.db.models.fields import json
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView, TemplateView
 from userapp.forms import *
 from captcha.fields import ReCaptchaField
+
 
 # Create your views here.
 
@@ -30,7 +31,7 @@ class IndexView(TemplateView):
             job_count = Job.objects.filter(service=service).count()
             service_job_count.append((service, job_count))
         context['service_job_count'] = service_job_count
-        context['jobs'] = Job.objects.all()
+        context['jobs'] = Job.objects.filter(status='active')
         context['services'] = services
         return context
 
@@ -39,22 +40,59 @@ class AboutView(TemplateView):
     template_name = 'user/pages/about.html'
 
 
-class SettingView(DetailView):
+# workerprofile
+class ProfileView(DetailView):
     model = User
-    template_name = 'user/pages/settings.html'
+    template_name = 'user/pages/workerprofile/profile.html'
     context_object_name = 'user'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        profile_id = self.request.user.profile
-        context['proposals'] = Proposal.objects.filter(applied_by=profile_id)
         context['services'] = Service.objects.all()
         context['skills'] = Skill.objects.all()
         return context
 
 
+class JobsAppliedListView(TemplateView):
+    template_name = 'user/pages/workerprofile/jobsapplied.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile_id = self.request.user.profile
+        context['proposals'] = Proposal.objects.filter(applied_by=profile_id)
+        return context
+
+
+class JobsCompletedListView(TemplateView):
+    model = Job
+    template_name = 'user/pages/workerprofile/jobscompleted.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile_id = self.request.user.profile
+        context['jobscompleted'] = Job.objects.filter(assigned_to=profile_id, status='completed')
+
+        return context
+
+
+class JobsInProgressListView(TemplateView):
+    model = Job
+    template_name = 'user/pages/workerprofile/jobsinprogress.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile_id = self.request.user.profile
+        context['jobsinprogress'] = Job.objects.filter(assigned_to=profile_id, status='inprogress')
+        return context
+
+
+class WorkerNotificationView(TemplateView):
+    template_name = 'user/pages/workerprofile/notifications.html'
+
+
 class JobListView(ListView):
     model = Job
+    queryset = Job.objects.filter(status='active')
     template_name = 'user/pages/job-list.html'
     context_object_name = 'jobs'
 
@@ -81,7 +119,7 @@ class FilterJobListView(View):
         return queryset
 
     def get_queryset(self):
-        queryset = Job.objects.all()
+        queryset = Job.objects.filter(status='active')
         if self.request.GET:
             minimum_fee = self.request.GET.get('minimum_fee')
             maximum_fee = self.request.GET.get('maximum_fee')
@@ -127,10 +165,16 @@ class TalentListView(ListView):
     template_name = 'user/pages/talent-list.html'
     context_object_name = 'profiles'
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = sorted(queryset, key=lambda x: x.get_avg_rating, reverse=True)
+        return queryset
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['services'] = Service.objects.all()
         context['skills'] = Skill.objects.all()
+
         return context
 
 
@@ -183,6 +227,7 @@ class FilterTalentListView(View):
             if skill:
                 queryset = queryset.filter(skill__in=skill).distinct()
 
+            queryset = sorted(queryset, key=lambda x: x.get_avg_rating, reverse=True)
         return queryset
 
     def get(self, request, *args, **kwargs):
@@ -198,9 +243,48 @@ class TalentDetailView(DetailView):
     template_name = 'user/pages/talent-detail.html'
     context_object_name = 'user'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile_object = Profile.objects.get(user=self.kwargs['pk'])
+        profile_id = profile_object.id
+        context['reviews'] = Review.objects.filter(profile=profile_id)
+
+        rating_counts = (
+            Review.objects
+            .filter(profile_id=profile_id)
+            .values('rating')
+            .annotate(count=models.Count('rating'))
+            .order_by('-rating')
+        )
+
+        count_dict = {str(i): 0 for i in range(1, 6)}
+        total_count = 0
+        total_rating = 0
+        for rating_count in rating_counts:
+            count_dict[str(rating_count['rating'])] = rating_count['count']
+            total_count += rating_count['count']
+            total_rating += rating_count['count'] * rating_count['rating']
+
+        if total_count > 0:
+            average_rating = total_rating / total_count
+            context['average_rating'] = round(average_rating, 2)
+            context['rating_counts'] = count_dict
+            context['total_count'] = total_count
+            complete_stars = int(average_rating)
+            context['complete_stars'] = str(complete_stars)
+            percent_filled = round((average_rating % 1) * 100, 2)
+            context['percent_filled'] = percent_filled
+            if percent_filled > 0:
+                context['remaining_stars'] = str(5 - complete_stars - 1)
+            else:
+                context['remaining_stars'] = str(5 - complete_stars)
+
+        return context
+
 
 class JobCategoryView(TemplateView):
     template_name = 'user/pages/jobcategory.html'
+
 
 def has_related_object(user):
     try:
@@ -217,15 +301,15 @@ class CategoryJobListView(ListView):
 
     def get_queryset(self):
         service = self.kwargs['service']
-        return Job.objects.filter(service=service)
-    
+        return Job.objects.filter(service=service, status='active')
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         service = Service.objects.get(pk=self.kwargs['service'])
         context['service'] = service
         return context
 
-    
+
 class JobDetailView(DetailView):
     model = Job
     template_name = 'user/pages/job-detail.html'
@@ -234,6 +318,10 @@ class JobDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         job_id = self.object.id
+        now = datetime.now()
+        context['time_remaining'] = (datetime.combine(
+            self.object.deadline, datetime.min.time()) - now).days
+
         if has_related_object(self.request.user):
             user = self.request.user.profile
             context['has_applied'] = Proposal.objects.filter(applied_to=job_id, applied_by=user).exists()
@@ -242,6 +330,21 @@ class JobDetailView(DetailView):
             context['no_profile'] = True
 
         return context
+
+
+class MarkJobCompleted(UpdateView):
+    model = Job
+    fields = ('status',)
+    success_url = reverse_lazy('settings')
+    success_message = 'Job marked as completed successfully'
+
+
+# class EditJobView(UpdateView):
+#     model = Job
+#     form_class = JobCreateForm
+#     context_object_name = 'job'
+#     template_name = 'user/pages/job_edit_modal.html'
+#     success_url = reverse_lazy('clientprofile')
 
 
 class JobProposalCreateView(CreateView):
@@ -304,7 +407,6 @@ class RegistrationView(SuccessMessageMixin, CreateView):
     success_message = 'User account registered successfully'
 
 
-
 class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
     form_class = ChangePasswordForm
     success_url = reverse_lazy('login')
@@ -336,8 +438,8 @@ class BecomeWorkerView(FormView):
 class WorkerProfileUpdateView(UpdateView):
     form_class = WorkerProfileForm
     queryset = Profile.objects.all()
-    template_name = 'user/pages/settings.html'
-    success_url = reverse_lazy('settings')
+    template_name = 'user/pages/workerprofile/profile.html'
+    success_url = reverse_lazy('workerprofile')
 
     def form_valid(self, form):
         email = self.request.POST.get('email')
@@ -358,12 +460,12 @@ class WorkerProfileUpdateView(UpdateView):
         user.email = email
         user.save()
         messages.success(self.request, 'Profile details updated successfully')
-        return redirect('settings', pk=profile.user.pk)
+        return redirect('workerprofile', pk=profile.user.pk)
 
     def form_invalid(self, form):
         profile = self.get_object()
         user = profile.user
-        return redirect('settings', pk=profile.user.pk)
+        return redirect('workerprofile', pk=profile.user.pk)
 
 
 class JobPostView(FormView):
@@ -414,11 +516,97 @@ class SendProposalView(CreateView):
     form_class = SendProposalForm
 
 
-class ClientSettingView(DetailView):
+# client profile
+class ClientProfileView(DetailView):
     model = User
-    template_name = 'user/pages/clientprofile.html'
+    template_name = 'user/pages/clientprofile/profile.html'
     context_object_name = 'user'
+
+
+class ClientPostedJobView(TemplateView):
+    template_name = 'user/pages/clientprofile/jobsposted.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posted_jobs'] = Job.objects.filter(postedby=self.request.user, status='active')
+        return context
+
+
+class ClientInProgressJobView(TemplateView):
+    template_name = 'user/pages/clientprofile/jobsinprogress.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['inprogress_jobs'] = Job.objects.filter(postedby=self.request.user, status='inprogress')
+        context['inprogress_jobs_count'] = context['inprogress_jobs'].count()
+        return context
+
+
+class ClientCompletedJobs(TemplateView):
+    template_name = 'user/pages/clientprofile/jobscompleted.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['completed_jobs'] = Job.objects.filter(postedby=self.request.user, status='completed')
+        return context
+
+
+class JobStatusUpdateView(UpdateView):
+    model = Job
+    fields = ['status']
+
+    def get(self, request, *args, **kwargs):
+        job = self.get_object()
+        job.status = 'completed'
+        job.save()
+        messages.success(request, "Job marked as completed successfully")
+        return redirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse('rateandreview', kwargs={'job_id': self.get_object().pk})
+
+
+class ReviewModalView(TemplateView):
+    template_name = 'user/pages/clientprofile/profile_rating_modal.html'
+    form_class = ProvideReviewForm
+    model = Review
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        job_id = self.kwargs.get('job_id')
+        job = Job.objects.get(id=job_id)
+        context['job'] = job
+        return context
+
+
+class SubmitReviewView(View):
+
+    def get(self, request, *args, **kwargs):
+        redirect_url = reverse('clientinprogressjobs')
+        userrating = request.GET.get('userrating')
+        review_by = request.GET.get('review_by')
+        review = request.GET.get('review')
+        job_id = request.GET.get('job_id')
+        profile = request.GET.get('profile')
+        hasreview = Review.objects.filter(job=job_id).exists()
+        if not hasreview:
+            review_obj = Review()
+            review_obj.rating = userrating
+            review_obj.profile = Profile.objects.get(id=profile)
+            review_obj.job = Job.objects.get(id=job_id)
+            review_obj.review = review
+            review_obj.review_by = User.objects.get(id=review_by)
+            review_obj.save()
+            messages.success(request, 'Your review has been submitted!')
+            return JsonResponse({'status': 'success', 'redirect_url': redirect_url})
+        else:
+            messages.warning(request, 'Review already submitted!')
+            return JsonResponse({'status': 'success', 'redirect_url': redirect_url})
+
+
+class ClientNotificationView(TemplateView):
+    template_name = 'user/pages/clientprofile/notifications.html'
+
 
 class NewsLetterSubscribeView(FormView):
     template_name = 'user/layouts/footer.html'
-    

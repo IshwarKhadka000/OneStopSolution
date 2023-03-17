@@ -160,7 +160,18 @@ class WorkerListView(ListView):
         context['page_range'] = page_range
         return context
 
-
+class EditWorkerStatusView(UpdateView):
+    model = Profile
+    form_class = WorkerStatusForm
+    context_object_name = 'profile'
+    template_name = 'admin/pages/edit_worker_status.html'
+    success_url = reverse_lazy('worker_list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['statuses'] = Status.objects.all()
+        return context
+        
 class JobListView(ListView):
     model = Job
     ordering = "id"
@@ -219,6 +230,53 @@ class DeleteQueryView(View):
         contact.delete()
         return redirect('query_list')
 
+
+#Status
+
+
+class StatusListView(ListView):
+    model = Status
+    ordering = "id"
+    paginate_by = 10
+    template_name = 'admin/pages/status.html'
+    context_object_name = 'statuses'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = context['paginator']
+        page_numbers_range = 5
+        max_index = len(paginator.page_range)
+        current_page = int(self.request.GET.get('page', '1'))
+        start_index = int((current_page - 1) /
+                          page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        if end_index >= max_index:
+            end_index = max_index
+        page_range = paginator.page_range[start_index:end_index]
+        context['page_range'] = page_range
+        return context
+
+
+class AddStatusView(CreateView):
+    model = Status
+    form_class = StatusForm
+    template_name = 'admin/pages/add_status_modal.html'
+    success_url = reverse_lazy('status_list')
+
+
+class EditStatusView(UpdateView):
+    model = Status
+    form_class = StatusForm
+    context_object_name = 'status'
+    template_name = 'admin/pages/edit_status_modal.html'
+    success_url = reverse_lazy('status_list')
+
+
+class DeleteStatusView(View):
+    def post(self, request, *args, **kwargs):
+        status = get_object_or_404(Status, pk=self.kwargs.get('pk'))
+        status.delete()
+        return redirect('status_list')
 
 class WorkerDetailView(DetailView):
     model = Profile

@@ -1,61 +1,198 @@
 {% extends 'user/master/master.html' %}
 {% load static %}
 {% block content %}
-     <!-- Job Detail Start -->
-        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="row gy-5 gx-4">
-                    <div class="col-lg-8">
-                        <div class="d-flex align-items-center mb-5">
-                            <img class="flex-shrink-0 img-fluid border rounded" src="{{user.profile.image.url}}" alt="" style="width: 80px; height: 80px;">
-                            <div class="text-start ps-4">
-                                <h3 class="mb-3">{{user.username}}</h3>
-                                <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{user.profile.location}}</span>
-                                <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>{{user.profile.fee}} Rupees</span>
-                            </div>
-                        </div>
+<style>
 
-                        <div class="mb-5">
-                            <div class="mt-5 d-flex">
-                                <p class="p-3"><i class="fa fa-angle-right text-primary me-2"></i>Jobs completed: 0</p>
-                                <p class="p-3"><i class="fa fa-angle-right text-primary me-2"></i>Jobs on progress: 0</p>
-                                <p class="p-3"><i class="fa fa-angle-right text-primary me-2"></i>Jobs incompleted: 0</p>
-                            </div>
-                            <h4 class="mb-3">Key Skills</h4>
-                            <ul class="list-unstyled">
-                            {% for skill in user.profile.skill.all %}
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>{{skill.name}}</li>
-                            {% endfor %}
-                            </ul>
-                            <h4 class="mb-3">Talent's bio</h4>
-                            <p>{{user.profile.bio}}</p>
-                        </div>
+.btn-grey{
+    background-color:#D8D8D8;
+	color:#FFF;
+}
+.rating-block{
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px 15px 20px 15px;
+	border-radius:3px;
+}
+.bold{
+	font-weight:700;
+}
+.padding-bottom-7{
+	padding-bottom:7px;
+}
+
+.review-block{
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px;
+	border-radius:3px;
+	margin-bottom:15px;
+}
+.review-block-name{
+	font-size:12px;
+	margin:10px 0;
+}
+.review-block-date{
+	font-size:12px;
+}
+.review-block-rate{
+	font-size:13px;
+	margin-bottom:15px;
+}
+.review-block-title{
+	font-size:15px;
+	font-weight:700;
+	margin-bottom:10px;
+}
+.review-block-description{
+	font-size:13px;
+}
 
 
+</style>
+<!-- Talent Detail Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row gy-5 gx-4">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-5">
+                    <img class="flex-shrink-0 img-fluid border rounded" src="{{user.profile.image.url}}" alt=""
+                         style="width: 80px; height: 80px;">
+                    <div class="text-start ps-4">
+                        <h3 class="mb-3">{{user.username}}</h3>
+                        <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{user.profile.location}}</span>
+                        <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>{{user.profile.fee}} Rupees</span>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
-                            <h4 class="mb-4">Profile Summery</h4>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Joined On: {{user.profile.joined_on}}</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Experience: {{user.profile.experience}} years</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Job category: {{user.profile.service}}</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Charge per hour(Rs.): {{user.profile.fee}}</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Location: {{user.profile.location}}</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Providing service: {{user.profile.service}}</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Is active: {{user.profile.active}}</p>
-                        </div>
-                        <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
-                            <h4 class="mb-4">Contact details</h4>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Fullname: {{user.first_name}} {{user.last_name}}</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Email: hidden</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Mobile number: hidden</p>
-                        </div>
-                    </div>
+                </div>
 
+                <div class="mb-5">
+                    <div class="mt-5 d-flex">
+                        <p class="p-3"><i class="fa fa-angle-right text-primary me-2"></i>Jobs on progress: 0</p>
+                        <p class="p-3"><i class="fa fa-angle-right text-primary me-2"></i>Jobs completed: 0</p>
+                    </div>
+                    <h4 class="mb-3">Key Skills</h4>
+                    <ul class="list-unstyled">
+                        {% for skill in user.profile.skill.all %}
+                        <li><i class="fa fa-angle-right text-primary me-2"></i>{{skill.name}}</li>
+                        {% endfor %}
+                    </ul>
+                    <h4 class="mb-3">Talent's bio</h4>
+                    <p>{{user.profile.bio}}</p>
+                </div>
+
+
+            </div>
+            <div class="col-lg-4">
+                <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
+                    <h4 class="mb-4">Profile Summery</h4>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Joined On: {{user.profile.joined_on}}</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Experience: {{user.profile.experience}} years
+                    </p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Job category: {{user.profile.service}}</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Charge per hour(Rs.): {{user.profile.fee}}</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Location: {{user.profile.location}}</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Providing service: {{user.profile.service}}
+                    </p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Is active: {{user.profile.active}}</p>
+                </div>
+                <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
+                    <h4 class="mb-4">Contact details</h4>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Fullname: {{user.first_name}}
+                        {{user.last_name}}</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Email: hidden</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Mobile number: hidden</p>
                 </div>
             </div>
+
         </div>
-        <!-- Job Detail End -->
+
+    </div>
+
+</div>
+
+<div class="container">
+    {% if reviews %}
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="rating-block">
+                <h4>Average worker rating</h4>
+                <h2 class="bold padding-bottom-7">{{average_rating}} <small>/ 5</small></h2>
+                {% for i in "12345" %}
+                    {% if i <= complete_stars %}
+                        <i class="fa fa-star fa-2x text-primary" aria-hidden="true"></i>
+                    {% endif %}
+                {% endfor %}
+                {% if percent_filled > 0 %}
+                    <i class="fa-regular fa-star-half-stroke text-primary fa-2x"></i>
+                {% endif %}
+                {% for i in "12345" %}
+                    {% if i <= remaining_stars %}
+                        <i class="fa-regular fa-star fa-2x text-primary" aria-hidden="true"></i>
+                    {% endif %}
+                {% endfor %}
+                <span>({{total_count}} ratings)</span>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <h4>Rating breakdown</h4>
+
+            {% for rating, count in rating_counts.items %}
+            {% with rating_int=rating|add:0 %}
+            <div class="pull-left d-flex">
+                <div class="pull-left" style="width:35px; line-height:1;">
+                    <div style="height:9px; margin:5px 0;">{{ rating }} <span><i class="fa fa-star text-primary" aria-hidden="true"></i></span></div>
+                </div>
+                <div class="pull-left" style="width:180px;">
+                    <div class="progress" style="height:9px; margin:8px 0;">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ count }}"
+                             aria-valuemin="0" aria-valuemax="{{ total_count }}"
+                             style="width: {{ count|floatformat }}%;">
+                            <span class="sr-only">{{ count }}/{{ total_count }} ({{ count|floatformat }}%)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-right" style="margin-left:10px;">{{ count }}</div>
+            </div>
+            {% endwith %}
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <hr/>
+            <div class="review-block">
+
+                {% for review in reviews %}
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="review-block-name"><a href="#">{{review.review_by.username}}</a></div>
+                        <div class="review-block-date">{{review.reviewed_on}}</div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="review-block-rate">
+                            {% for i in "12345" %}
+                                {% if i|add:'0' <= review.rating %}
+                                    <i class="fa fa-star fa-2x text-primary" aria-hidden="true"></i>
+                                {% else %}
+                                    <i class="fa-regular fa-star fa-2x text-primary" aria-hidden="true"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="review-block-title">{{review.job}}</div>
+                        <div class="review-block-description">{{review.review}}</div>
+                    </div>
+                </div>
+                <hr/>
+                {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Talent Detail End -->
 
 
 {% endblock %}

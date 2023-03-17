@@ -1,0 +1,160 @@
+{% extends 'user/pages/clientprofile/base.html' %}
+{% load static %}
+{% block page %}
+<form id="rating-form" method="" action="#">
+
+    <h3 class="mb-4">Rate and Provide feedback to his work</h3>
+    <span class="text-danger">Warning : </span><span>If you cancelled it or provided a wrong review and rating you won't be able to change it later</span><br><br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Providing review to:</label>
+                <input type="text" placeholder="{{job.assigned_to.user.username}}"  class="form-control" readonly>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Worker's full name:</label>
+                <input type="text" value="{{job.assigned_to.user.first_name}} {{job.assigned_to.user.last_name}}" id="workerfullname_field" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Job Completed: </label>
+                <input type="text" placeholder="{{job.title}}" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Rating:</label>
+                <div>
+                    <i class = "fa fa-star fa-2x" aria-hidden = "true" id = "st1"></i>
+                    <i class = "fa fa-star fa-2x" aria-hidden = "true" id = "st2"></i>
+                    <i class = "fa fa-star fa-2x" aria-hidden = "true" id = "st3"></i>
+                    <i class = "fa fa-star fa-2x" aria-hidden = "true" id = "st4"></i>
+                    <i class = "fa fa-star fa-2x" aria-hidden = "true" id = "st5"></i>
+                    <span id="reviewquality"></span>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Feedback</label>
+                <textarea name="review" id="feedback_field" class="form-control" required></textarea>
+            </div>
+        </div>
+        <input type="hidden" name="review_by" id="reviewby_field" value="{{user.id}}">
+        <input type="hidden" name="profile" id="profile_field" value="{{job.assigned_to.id}}">
+        <input type="hidden" name="job" id="job_field" value="{{job.id}}">
+        <div class="form-group text-center">
+            <div class="row item-center">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block w-100">Submit</button>
+                </div>
+                <div class="col-md-6">
+                    <a href="{% url 'clientinprogressjobs' %}" type="button" class="btn btn-light btn-lg btn-block w-100">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+        var rating = 0;
+        $(document).ready(function() {
+        $('#rating-form').submit(function(event){
+            event.preventDefault();
+
+            const userrating = rating;
+            const review_by = $('#reviewby_field').val();
+            const review = $('#feedback_field').val();
+            const job = $('#job_field').val();
+            const profile = $('#profile_field').val();
+            if(userrating==0){
+                $("#reviewquality").text('No rating given');
+            }
+            else{
+                const formData = {
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    'userrating': userrating,
+                    'review_by': review_by,
+                    'review': review,
+                    'job_id': job,
+                    'profile': profile,
+                };
+                var url = "{% url 'submitreview' job.id %}";
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    data: formData,
+                    success: function(response) {
+                    if (response.status === 'success') {
+                        window.location.href = response.redirect_url;
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+        });
+
+        }
+        });
+
+          $("#st1").click(function() {
+              $(".fa-star").css("color", "black");
+              $("#st1").css("color", "#00B074");
+              rating=1;
+              updateReviewText(1);
+          });
+          $("#st2").click(function() {
+              $(".fa-star").css("color", "black");
+              $("#st1, #st2").css("color", "#00B074");
+              rating=2;
+              updateReviewText(2);
+          });
+          $("#st3").click(function() {
+              $(".fa-star").css("color", "black")
+              $("#st1, #st2, #st3").css("color", "#00B074");
+              rating=3;
+              updateReviewText(3);
+
+          });
+          $("#st4").click(function() {
+              $(".fa-star").css("color", "black");
+              $("#st1, #st2, #st3, #st4").css("color", "#00B074");
+              rating=4
+              updateReviewText(4);
+
+          });
+          $("#st5").click(function() {
+              $(".fa-star").css("color", "black");
+              $("#st1, #st2, #st3, #st4, #st5").css("color", "#00B074");
+              rating=5;
+              updateReviewText(5);
+          });
+
+        });
+        function updateReviewText(numStars) {
+            var text = "";
+            switch (numStars) {
+                case 1:
+                    text = "Poor";
+                    break;
+                case 2:
+                    text = "Fair";
+                    break;
+                case 3:
+                    text = "Good";
+                    break;
+                case 4:
+                    text = "Very Good";
+                    break;
+                case 5:
+                    text = "Excellent";
+                    break;
+            }
+            $("#reviewquality").text(text);
+        }
+
+</script>
+{% endblock %}

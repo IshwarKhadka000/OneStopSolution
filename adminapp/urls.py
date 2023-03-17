@@ -26,7 +26,7 @@ urlpatterns = [
     # workers
     path('worker_list/', WorkerListView.as_view(), name="worker_list"),
     path('worker_detail/<int:pk>/', WorkerDetailView.as_view(), name="worker_detail"),
-
+    path('edit_worker_status/<int:pk>/', EditWorkerStatusView.as_view(), name="edit_worker_status"),
     # jobs
     path('job_list/', JobListView.as_view(), name="job_list"),
     path('job_detail/<int:pk>/', JobDetailView.as_view(), name="job_detail"),
@@ -36,5 +36,9 @@ urlpatterns = [
     path('query_detail/<int:pk>/', QueryDetailView.as_view(), name="query_detail"),
     path('delete_query/<int:pk>', DeleteQueryView.as_view(), name="delete_query"),
 
-
+    #status
+    path('status_list', StatusListView.as_view(), name="status_list"),
+    path('add_status/', AddStatusView.as_view(), name="add_status"),
+    path('edit_status/<int:pk>/', EditStatusView.as_view(), name="edit_status"),
+    path('delete_status/<int:pk>/', DeleteStatusView.as_view(), name="delete_status"),
 ]

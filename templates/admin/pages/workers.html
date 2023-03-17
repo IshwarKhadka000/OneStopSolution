@@ -34,16 +34,24 @@
 
             <tr>
                 <th>{{ page_obj.start_index|add:forloop.counter0 }}</th>
-                <th>{{profile.user.first_name}}{{profile.user.last_name}}</th>
+                <th>{{profile.user.first_name}}  {{profile.user.last_name}}</th>
                 <th>{{profile.user.username}}</th>
                 <th>{{profile.user.email}}</th>
                 <th>{{profile.phone_number}}</th>
                 <th>{{profile.joined_on}}</th>
                 <th>{{profile.updated_on}}</th>
+                {{ profile.status }}
                 <th>
+                    <span class="badge text-2xl badge-pill {% if profile.status|lower == 'active' %} badge-success {% elif profile.status|lower == 'inactive' %} badge-warning {% elif profile.status|lower == 'suspended' %} badge-danger {% else %} badge-secondary {% endif %}">
+                        {{ profile.status }}
+                    </span>
+                </th>
                  <th>
                     <a class="text-info"  data-toggle="modal" data-target="#viewWorkerModal" data-remote="{% url 'worker_detail' profile.id %}">
                         <i class="fa-solid fa-eye" data-toggle="tooltip" title="view"></i>
+                    </a>
+                    <a class="pe-auto text-secondary" data-toggle="modal" data-target="#editWorkerStatusModal" data-remote="{% url 'edit_worker_status' profile.id %}">
+                        <i class="fa-solid fa-gear" data-toggle="tooltip" title="configure"></i>
                     </a>
 
                 </th>
@@ -88,6 +96,14 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editStatusModalLabel" aria-hidden="true" id="editWorkerStatusModal" >
+    <div class="modal-dialog" style="max-width: 60%;" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
@@ -95,6 +111,12 @@
 
 <script>
     $("#viewWorkerModal").on("shown.bs.modal", function(e){
+        var button = $(e.relatedTarget)
+        var modal = $(this)
+        modal.find(".modal-content").load(button.data("remote"))
+    })
+
+     $("#editWorkerStatusModal").on("shown.bs.modal", function(e){
         var button = $(e.relatedTarget)
         var modal = $(this)
         modal.find(".modal-content").load(button.data("remote"))

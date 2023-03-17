@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from .models import *
 
 
-
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
 
@@ -54,7 +53,6 @@ class JobCreateForm(forms.ModelForm):
 
 class ContactForm(forms.ModelForm):
     class Meta:
-        
         model = Contact
         fields = ['name', 'email', 'subject', 'message']
 
@@ -70,4 +68,11 @@ class SendProposalForm(forms.ModelForm):
         # there's a `fields` property now
         self.fields['applied_to'].required = False
         self.fields['applied_by'].required = False
+
+
+class ProvideReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['rating', 'profile', 'job', 'review', 'review_by', ]
+
 

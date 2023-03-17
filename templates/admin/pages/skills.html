@@ -132,11 +132,17 @@
 
 <script>
     $("#addSkillModal").on("shown.bs.modal", function(e){
+        setTimeout(function() {
+        $('#name_field').focus();
+    }, 500); 
         var button = $(e.relatedTarget)
         var modal = $(this)
         modal.find(".modal-content").load(button.data("remote"))
     })
         $("#editSkillModal").on("shown.bs.modal", function(e){
+            setTimeout(function() {
+            $('#name_field').focus();
+    }, 500); //
         var button = $(e.relatedTarget)
         var modal = $(this)
         modal.find(".modal-content").load(button.data("remote"))

@@ -1,0 +1,109 @@
+{% extends 'user/master/master.html' %}
+{% load static %}
+{% block content %}
+    <style>
+
+
+.shadow {
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.profile-tab-nav {
+	min-width: 250px;
+}
+
+.tab-content {
+	flex: 1;
+}
+
+.form-group {
+	margin-bottom: 1.5rem;
+}
+
+.nav-pills a.nav-link {
+	padding: 15px 20px;
+	border-bottom: 1px solid #ddd;
+	border-radius: 0;
+	color: #333;
+}
+.nav-pills a.nav-link i {
+	width: 20px;
+}
+
+.img-circle img {
+	height: 100px;
+	width: 100px;
+	border-radius: 100%;
+	border: 5px solid #fff;
+}
+
+
+.form-group.success input{
+	border-color: #09c372;
+}
+
+.form-group.error input{
+	border-color: #ff3860;
+}
+
+.form-group .error{
+	color: #ff3860;
+	font-size :  9px;
+	height : 13px;
+}
+
+
+    </style>
+    <section class="py-5 my-5">
+        <div class="container">
+            <h1 class="mb-5">Worker Account Settings</h1>
+            <div class="bg-white shadow rounded-lg d-block d-sm-flex">
+                <div class="profile-tab-nav border-right">
+                    <div class="p-4">
+                        <div class="img-circle text-center mb-3">
+                            <img src="{{ user.profile.image.url }}" alt="Image" class="shadow" />
+                        </div>
+                        <h4 class="text-center">{{ user.first_name }} {{ user.last_name }}</h4>
+                        <p class="text-center">@{{ user.username }}</p>
+                    </div>
+                    <div class="nav flex-column nav-pills"
+                         id="v-pills-tab"
+                         role="tablist"
+                         aria-orientation="vertical">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'workerprofile' %} active {% endif %}"
+                           href="{% url 'workerprofile' user.id %}">
+                            <i class="fa fa-home text-center mr-1"></i>
+                            Account
+                        </a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'appliedjobs' %} active {% endif %}"
+                           id="jobs-applied-tab"
+                           href="{% url 'appliedjobs' %}">
+                            <i class="fa-solid fa-list text-center mr-1"></i>
+                            Applied Jobs
+                        </a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'josinprogress' %} active {% endif %}"
+                           href="{% url 'josinprogress' %}">
+                            <i class="fa-sharp fa-solid fa-calendar-check mr-1"></i>
+                            Jobs On Progress
+                        </a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'completedjobs' %} active {% endif %}"
+                           href="{% url 'completedjobs' %}"><i class="fa-solid fa-list-check text-center mr-1"></i>Completed Jobs</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'workernotification' %} active {% endif %}" href="{% url 'workernotification' %}">
+                            <i class="fa fa-bell text-center mr-1"></i>
+                            Notifications
+                        </a>
+                    </div>
+                </div>
+                <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+                {% block page %}
+                {% endblock %}
+                </div>
+
+        </div>
+    </div>
+
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+{% endblock %}

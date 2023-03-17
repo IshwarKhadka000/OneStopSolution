@@ -9,7 +9,13 @@
                         <div class="d-flex align-items-center mb-5">
                             <img class="flex-shrink-0 img-fluid border rounded" src="{{job.image.url}}" alt="" style="width: 80px; height: 80px;">
                             <div class="text-start ps-4">
-                                <h3 class="mb-3">{{job.title}}</h3>
+                                <h3 class="mb-3">{{job.title}}
+                                    
+                                    <span class="pl-5 badge rounded-pill bg-warning">{% if time_remaining > 0 %}Expires in {{time_remaining}} days</span>{% else %}<span class="pl-5 badge rounded-pill bg-danger">Expired</span>{% endif %}
+                                    
+                                        
+                                        
+                                </h3>
                                 <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{job.location}}</span>
                                 <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>{{job.timetocomplete}} Hours</span>
                                 <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>{{job.payment}} Rupees</span>
@@ -34,6 +40,7 @@
                                         {% endfor %}
                                     </ul>
                         </div>
+                        {% if time_remaining > 0 %}
                         {% if not no_profile %}
                             {% if has_applied %}
                                 <div class="col-12">
@@ -46,6 +53,11 @@
                             <div class="col-12">
                                 <a  href="{% url 'becomeworker' %}" class="btn btn-secondary w-100">Become Worker</a>
                             </div>
+                        {% endif %}
+                        {% else %}
+                            <div class="col-12">
+                                    <button class="btn btn-warning w-100" disabled>Job Has Expired</button>
+                                </div>
                         {% endif %}
                     </div>
 

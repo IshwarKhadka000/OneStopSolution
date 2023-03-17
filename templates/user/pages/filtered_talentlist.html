@@ -4,7 +4,7 @@
         {% for profile in profiles %}
             <div class="job-item p-4 mb-4">
                 <div class="row g-4">
-                    <div class="col-sm-12 col-md-8 d-flex align-items-center">
+                    <div class="col-sm-12 col-md-6 d-flex align-items-center">
                         <img alt="" class="flex-shrink-0 img-fluid border rounded" src="{{profile.image.url}}"
                              style="width: 80px; height: 80px;">
                         <div class="text-start ps-4">
@@ -12,10 +12,37 @@
                             <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{profile.location}}</span>
                             <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>{{profile.fee}}</span>
                         </div>
+                            
                     </div>
-                    <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+
+                    <div class="col-sm-12 col-md-3 d-flex align-items-start align-items-md-center justify-content-center text-primary">
+                        <div class="text-center">
+                            {% if profile.get_avg_rating %}
+                            {% for i in "12345" %}
+                                {% if i <= profile.rating_breakdown.complete_stars %}
+                                    <i class="fa-solid fa-star"></i>
+                                {% endif %}
+                            {% endfor %}
+                            {% if profile.rating_breakdown.percent_filled > 0 %}
+                                <i class="fa-regular fa-star-half-stroke text-primary"></i>
+                            {% endif %}
+                            {% for i in "12345" %}
+                                {% if i <= profile.rating_breakdown.remaining_stars %}
+                                    <i class="fa-regular fa-star text-primary" aria-hidden="true"></i>
+                                {% endif %}
+                            {% endfor %}
+                            <p class="mt-2">({{profile.get_avg_rating}} stars from {{profile.get_number_of_ratings}} ratings)</p>
+                            {% else %}
+                                <p>Not rated yet</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+          
+
+                    <div class="col-sm-12 col-md-3 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                         <div class="d-flex mb-3">
-                            <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
+                            
                             <a class="btn btn-primary" href="{% url 'talentdetail' profile.user.id %}">View Details</a>
                         </div>
                         <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Joined on: {{profile.joined_on}}</small>

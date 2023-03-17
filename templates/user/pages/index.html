@@ -6,7 +6,7 @@
         <div class="container-fluid p-0">
             <div class="owl-carousel header-carousel position-relative">
                 <div class="owl-carousel-item position-relative">
-                    <img class="img-fluid" src="{% static 'img/carousel-1.jpg' %}" alt="">
+                    <img class="img-fluid" src="{% static 'img/plumberworking.jpg' %}" alt="" style="height:950px;">
                     <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
                         <div class="container">
                             <div class="row justify-content-start">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="owl-carousel-item position-relative">
-                    <img class="img-fluid" src="{% static 'img/carousel-2.jpg' %}" alt="">
+                    <img class="img-fluid" src="{% static 'img/electricianworking.jpg' %}" alt="" style="height:950px;">
                     <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
                         <div class="container">
                             <div class="row justify-content-start">
@@ -52,6 +52,7 @@
                             <a class="cat-item rounded p-4" href="{% url 'category_jobs' service.id %}">
                                 <h6 class="mb-3">{{ service.name }}</h6>
                                 <p class="mb-0">{{job_count}} Vacancies</p>
+
                             </a>
                         </div>
                     {% endfor %}
@@ -110,15 +111,15 @@
                                         <img class="flex-shrink-0 img-fluid border rounded" src="{{ job.image.url }}" alt="" style="width: 80px; height: 80px;">
                                         <div class="text-start ps-4">
                                             <h5 class="mb-3">{{job.title}}</h5>
-                                            <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>New York, USA</span>
-                                            <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full Time</span>
-                                            <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>$123 - $456</span>
+                                            <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{job.location}}</span>
+                                            
+                                            <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>{{job.payment}}</span>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                                         <div class="d-flex mb-3">
-                                            <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
-                                            <a class="btn btn-primary" href="">Apply Now</a>
+                                            
+                                            <a class="btn btn-primary" href="{% url 'jobdetail' job.id  %}">View Details</a>
                                         </div>
                                         <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Date Line: 01 Jan, 2045</small>
                                     </div>

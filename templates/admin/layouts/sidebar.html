@@ -1,3 +1,4 @@
+{% load static %}
 <div class="wrapper">
     <div class="body-overlay"></div>
 
@@ -5,7 +6,11 @@
 
     <div id="sidebar">
         <div class="sidebar-header">
-            <h3><span>One Stop Solution</span></h3>
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <div class="img-logo">
+                <img src="{% static 'img/logo.png' %}" width="240" height="70" alt="logo"/>
+                </div>
+            </a>
         </div>
         <ul class="list-unstyled component m-0">
             <li {% if current_url == 'dashboard' %} class="active" {% endif %}>
@@ -42,6 +47,15 @@
                 >
                     <i class="fa-solid fa-users"></i>
                     Clients
+                </a>
+            </li>
+            <li {% if current_url == 'status_list' %} class="active" {% endif %}>
+                <a
+                        href="{% url 'status_list' %}"
+                        class="nav-link"
+                >
+                    <i class="fas fa-circle"></i>
+                    status
                 </a>
             </li>
             <li {% if current_url == 'worker_list' %} class="active" {% endif %}>
