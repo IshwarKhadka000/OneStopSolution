@@ -111,7 +111,7 @@ class FilterJobListView(View):
     template_name = 'user/pages/filtered_joblist.html'
 
     def get_experience_queryset(self, value):
-        queryset = Profile.objects.all()
+        queryset = Job.objects.all()
         if self.request.user.is_authenticated:
             queryset = queryset.filter(~Q(postedby=self.request.user.id))
         if value == 1:
@@ -258,7 +258,7 @@ class FilterTalentListView(View):
 class TalentDetailView(DetailView):
     model = User
     template_name = 'user/pages/talent-detail.html'
-    context_object_name = 'user'
+    context_object_name = 'worker'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

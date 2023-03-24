@@ -11,7 +11,7 @@
                             <div class="text-start ps-4">
                                 <h3 class="mb-3">{{job.title}}
                                     
-                                    <span class="pl-5 badge rounded-pill bg-warning">{% if time_remaining > 0 %}Expires in {{time_remaining}} days</span>{% else %}<span class="pl-5 badge rounded-pill bg-danger">Expired</span>{% endif %}
+                                    {% if time_remaining > 0 %}<span class="pl-5 badge rounded-pill bg-warning">Expires in {{time_remaining}} days</span>{% else %}<span class="pl-5 badge rounded-pill bg-danger">Expired</span>{% endif %}
                                     
                                         
                                         

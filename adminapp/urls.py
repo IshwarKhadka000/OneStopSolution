@@ -20,13 +20,13 @@ urlpatterns = [
     path('delete_skill/<int:pk>/', DeleteSkillView.as_view(), name="delete_skill"),
 
     # users
-
     path('user_list/', ClientListView.as_view(), name="user_list"),
 
     # workers
     path('worker_list/', WorkerListView.as_view(), name="worker_list"),
     path('worker_detail/<int:pk>/', WorkerDetailView.as_view(), name="worker_detail"),
     path('edit_worker_status/<int:pk>/', EditWorkerStatusView.as_view(), name="edit_worker_status"),
+
     # jobs
     path('job_list/', JobListView.as_view(), name="job_list"),
     path('job_detail/<int:pk>/', JobDetailView.as_view(), name="job_detail"),

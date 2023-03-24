@@ -55,12 +55,12 @@
         <div class="row gy-5 gx-4">
             <div class="col-lg-8">
                 <div class="d-flex align-items-center mb-5">
-                    <img class="flex-shrink-0 img-fluid border rounded" src="{{user.profile.image.url}}" alt=""
+                    <img class="flex-shrink-0 img-fluid border rounded" src="{{worker.profile.image.url}}" alt=""
                          style="width: 80px; height: 80px;">
                     <div class="text-start ps-4">
-                        <h3 class="mb-3">{{user.username}}</h3>
-                        <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{user.profile.location}}</span>
-                        <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>{{user.profile.fee}} Rupees</span>
+                        <h3 class="mb-3">{{worker.username}}</h3>
+                        <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{worker.profile.location}}</span>
+                        <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>{{worker.profile.fee}} Rupees</span>
                     </div>
                 </div>
 
@@ -71,12 +71,12 @@
                     </div>
                     <h4 class="mb-3">Key Skills</h4>
                     <ul class="list-unstyled">
-                        {% for skill in user.profile.skill.all %}
+                        {% for skill in worker.profile.skill.all %}
                         <li><i class="fa fa-angle-right text-primary me-2"></i>{{skill.name}}</li>
                         {% endfor %}
                     </ul>
                     <h4 class="mb-3">Talent's bio</h4>
-                    <p>{{user.profile.bio}}</p>
+                    <p>{{worker.profile.bio}}</p>
                 </div>
 
 
@@ -84,19 +84,19 @@
             <div class="col-lg-4">
                 <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
                     <h4 class="mb-4">Profile Summery</h4>
-                    <p><i class="fa fa-angle-right text-primary me-2"></i>Joined On: {{user.profile.joined_on}}</p>
-                    <p><i class="fa fa-angle-right text-primary me-2"></i>Experience: {{user.profile.experience}} years
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Joined On: {{worker.profile.joined_on}}</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Experience: {{worker.profile.experience}} years
                     </p>
-                    <p><i class="fa fa-angle-right text-primary me-2"></i>Job category: {{user.profile.service}}</p>
-                    <p><i class="fa fa-angle-right text-primary me-2"></i>Charge per hour(Rs.): {{user.profile.fee}}</p>
-                    <p><i class="fa fa-angle-right text-primary me-2"></i>Location: {{user.profile.location}}</p>
-                    <p><i class="fa fa-angle-right text-primary me-2"></i>Providing service: {{user.profile.service}}
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Job category: {{worker.profile.service}}</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Charge per hour(Rs.): {{worker.profile.fee}}</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Location: {{worker.profile.location}}</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Providing service: {{worker.profile.service}}
                     </p>
-                    <p><i class="fa fa-angle-right text-primary me-2"></i>Is active: {{user.profile.active}}</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Is active: {{worker.profile.active}}</p>
                 </div>
                 <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
                     <h4 class="mb-4">Contact details</h4>
-                    <p><i class="fa fa-angle-right text-primary me-2"></i>Fullname: {{user.first_name}}
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Fullname: {{worker.first_name}}
                         {{user.last_name}}</p>
                     <p><i class="fa fa-angle-right text-primary me-2"></i>Email: hidden</p>
                     <p><i class="fa fa-angle-right text-primary me-2"></i>Mobile number: hidden</p>

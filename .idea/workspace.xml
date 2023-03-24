@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7760427-354d-485d-84d8-84fc44c3a90e" name="Changes" comment="Admin login and logout" />
+    <list default="true" id="c7760427-354d-485d-84d8-84fc44c3a90e" name="Changes" comment="requirements updated">
+      <change afterPath="$PROJECT_DIR$/media/Job/Images/car6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/Job/Images/car9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/Job/Images/chiran.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/Job/Images/iPhone-11-.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/Profile/Documents/car9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/Profile/Images/profile_NST7Xgf.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adminapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/pages/clientprofile/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/pages/job-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/job-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/pages/talent-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/talent-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/pages/workerprofile/jobsapplied.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/workerprofile/jobsapplied.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/pages/workerprofile/jobsinprogress.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/workerprofile/jobsinprogress.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -156,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679633420543</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="requirements updated">
+      <created>1679634116063</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1679634116063</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -182,7 +205,8 @@
     <MESSAGE value="worker profile client profile added , rating and review completed and sort worker list by highest average rating completed" />
     <MESSAGE value="Admin Dashboard modified" />
     <MESSAGE value="Admin login and logout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Admin login and logout" />
+    <MESSAGE value="requirements updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="requirements updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
