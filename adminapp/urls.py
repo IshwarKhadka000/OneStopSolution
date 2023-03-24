@@ -5,6 +5,7 @@ urlpatterns = [
 
     # login
     path('', AdminDashboardView.as_view(), name='dashboard'),
+    path('adminapp/adminlogin/', AdminLoginView.as_view(), name='adminlogin'),
 
     # services
     path('service_list/', ServiceListView.as_view(), name="service_list"),

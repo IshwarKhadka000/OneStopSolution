@@ -1,5 +1,4 @@
 from datetime import datetime
-from urllib.parse import urlencode
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -14,7 +13,6 @@ from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView, TemplateView
 from userapp.forms import *
-from captcha.fields import ReCaptchaField
 
 
 # Create your views here.
@@ -517,23 +515,10 @@ class JobPostView(CreateView):
 class ContactView(SuccessMessageMixin, CreateView):
     form_class = ContactForm
     template_name = 'user/pages/contact.html'
-    success_url = reverse_lazy('index')
-    success_message = 'Query submitted successfully !! We will get back to you as soon as possible'
-    captcha = ReCaptchaField()
 
-    def form_valid(self, form):
-        if form.is_valid():
-            captcha_response = self.request.POST.get('g-recaptcha-response')
-            if self.captcha.verify(captcha_response):
-                form.send_email()
-                messages.success(self.request, 'Your message has been sent.')
-                return super().form_valid(form)
-            else:
-                messages.error(
-                    self.request, 'Invalid CAPTCHA, please try again.')
-                return self.form_invalid(form)
-        else:
-            return self.form_invalid(form)
+    success_message = 'Query submitted successfully !! We will get back to you as soon as possible'
+    success_url = reverse_lazy('index')
+
 
 
 class SendProposalView(CreateView):

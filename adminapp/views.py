@@ -16,6 +16,8 @@ import time
 
 
 # Create your views here.
+class AdminLoginView(TemplateView):
+    template_name = 'admin/pages/login.html'
 
 class AdminDashboardView(TemplateView):
     template_name = 'admin/pages/index.html'

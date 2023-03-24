@@ -88,10 +88,7 @@
                         </a>
                         <a class="nav-link {% if request.resolver_match.url_name == 'completedjobs' %} active {% endif %}"
                            href="{% url 'completedjobs' %}"><i class="fa-solid fa-list-check text-center mr-1"></i>Completed Jobs</a>
-                        <a class="nav-link {% if request.resolver_match.url_name == 'workernotification' %} active {% endif %}" href="{% url 'workernotification' %}">
-                            <i class="fa fa-bell text-center mr-1"></i>
-                            Notifications
-                        </a>
+
                     </div>
                 </div>
                 <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
