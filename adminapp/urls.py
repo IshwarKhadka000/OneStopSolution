@@ -4,9 +4,9 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
 
     # login
-    path('', AdminDashboardView.as_view(), name='dashboard'),
-    path('adminapp/adminlogin/', AdminLoginView.as_view(), name='adminlogin'),
-
+    path('adminapp/dashboard', login_required(AdminDashboardView.as_view()), name='dashboard'),
+    path('', AdminLogin.as_view(), name='adminlogin'),
+    path('adminlogout/', AdminLogin.logout_view, name='adminlogout'),
     # services
     path('service_list/', ServiceListView.as_view(), name="service_list"),
     path('add_service/', AddServiceView.as_view(), name="add_service"),

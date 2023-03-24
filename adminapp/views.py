@@ -16,8 +16,30 @@ import time
 
 
 # Create your views here.
-class AdminLoginView(TemplateView):
+
+
+class AdminLogin(View):
     template_name = 'admin/pages/login.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request, *args, **kwargs):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        print(username, password)
+        user = authenticate(username=username, password=password)
+        if user is not None and user.is_superuser:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            return redirect('adminlogin')
+
+    @staticmethod
+    def logout_view(request):
+        logout(request)
+        return redirect('adminlogin')
+
 
 class AdminDashboardView(TemplateView):
     template_name = 'admin/pages/index.html'
