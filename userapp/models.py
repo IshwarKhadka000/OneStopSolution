@@ -40,7 +40,7 @@ class Status(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
-    bio = models.TextField(max_length=1000, blank=True, null=True)
+    bio = models.TextField(max_length=2500, blank=True, null=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     phone_number = models.CharField(max_length=100, blank=True, null=True)
     experience = models.PositiveIntegerField(blank=True, null=True)
@@ -49,12 +49,11 @@ class Profile(models.Model):
     gender = models.CharField(choices=gender_choices, max_length=20, default='male')
     image = models.ImageField(upload_to='Profile/Images', blank=True, null=True)
     document = models.FileField(upload_to='Profile/Documents', blank=True, null=True)
-    status = models.BooleanField(null=True, blank=True)
     fee = models.PositiveIntegerField(default=False, null=True, blank=True)
     active = models.BooleanField(null=True, blank=True)
     joined_on = models.DateField(auto_now_add=True, null=True)
     updated_on = models.DateField(auto_now=True, null=True)
-    status = models.ForeignKey(Status, blank=True, null=True, on_delete=models.CASCADE)
+    status = models.ForeignKey(Status, blank=True, null=True, default="", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.username
@@ -104,7 +103,7 @@ class Job(models.Model):
     description = models.TextField(max_length=2000, blank=True, null=True)
     posted_on = models.DateField(auto_now_add=True, null=True)
     modified_on = models.DateField(auto_now=True, null=True)
-    status = models.CharField(choices=job_status, max_length=20, default='active')
+    status = models.CharField(choices=job_status, max_length=20, default="active")
     assigned_to = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):

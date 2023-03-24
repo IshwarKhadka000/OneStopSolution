@@ -4,67 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7760427-354d-485d-84d8-84fc44c3a90e" name="Changes" comment="jobs category added">
-      <change afterPath="$PROJECT_DIR$/media/Job/Images/car1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/Job/Images/casio_Q4RNJOS.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/Job/Images/casio_wHSO35S.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/changepassword.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/electricianworking.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/plumberworking.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/pages/add_status_modal.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/pages/edit_status_modal.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/pages/edit_worker_status.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/pages/status.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/jobproposals.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/jobscompleted.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/jobsinprogress.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/jobsposted.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/notifications.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/profile_rating_modal.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/job_detail_modal.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/jod_edit_modal.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/workerprofile/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/workerprofile/jobsapplied.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/workerprofile/jobscompleted.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/workerprofile/jobsinprogress.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/workerprofile/notifications.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pages/workerprofile/profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userapp/migrations/0014_status_alter_profile_status.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userapp/migrations/0015_status_created_on_status_updated_on.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userapp/migrations/0016_job_completed_by_job_status.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userapp/migrations/0017_rename_completed_by_job_assigned_to.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userapp/migrations/0018_review.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userapp/migrations/0019_proposal_status.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userapp/migrations/0020_alter_proposal_status.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userapp/migrations/0021_alter_job_status_alter_proposal_status_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userapp/migrations/0022_alter_review_job_alter_review_profile_and_more.py" afterDir="false" />
+    <list default="true" id="c7760427-354d-485d-84d8-84fc44c3a90e" name="Changes" comment="worker profile client profile added , rating and review completed and sort worker list by highest average rating completed">
+      <change afterPath="$PROJECT_DIR$/media/Job/Images/plumber_needed_5BqCVlH.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/Profile/Documents/plumbingcertificate_w6Ax9A6.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/Profile/Documents/profile_JvfmlXg.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/Profile/Images/ishwar.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/Profile/Images/yubraj.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/proposaldetail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/userapp/migrations/0023_alter_job_status.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/userapp/migrations/0024_alter_job_status_alter_profile_status.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/adminapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminapp/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/adminapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/adminapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/layouts/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/layouts/sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/pages/add_skill_modal.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/pages/add_skill_modal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/pages/delete_service_modal.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/pages/edit_skill_modal.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/pages/edit_skill_modal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/pages/services.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/pages/services.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/pages/skills.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/pages/skills.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/pages/workers.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/pages/workers.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/layouts/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/layouts/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/layouts/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/layouts/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/layouts/message.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/layouts/message.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/pages/changepassword.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/changepassword.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/pages/filtered_joblist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/filtered_joblist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/pages/filtered_talentlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/filtered_talentlist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/pages/job-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/job-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/pages/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/settings.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/pages/talent-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/talent-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/pages/talent-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/talent-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Job/Images/car1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Job/Images/casio.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Job/Images/casio_Q4RNJOS.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Job/Images/casio_wHSO35S.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Profile/Documents/WallpaperDog-20432204.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Profile/Documents/casio.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Profile/Documents/plumbingcertificate_UVxuFmW.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Profile/Images/casio.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Profile/Images/plumber_needed.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Profile/Images/profile_eaJnwTr.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/layouts/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/layouts/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/pages/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/pages/clientprofile/jobproposals.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/jobproposals.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/pages/clientprofile/jobscompleted.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/jobscompleted.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/pages/clientprofile/jobsinprogress.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/jobsinprogress.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/pages/clientprofile/jobsposted.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/jobsposted.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/pages/postajob.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/postajob.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/pages/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/registration.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/urls.py" afterDir="false" />
@@ -193,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678357368112</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="worker profile client profile added , rating and review completed and sort worker list by highest average rating completed">
+      <created>1679046198050</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1679046198050</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -216,14 +193,15 @@
     <MESSAGE value="admin dashboard crud added" />
     <MESSAGE value="apply to a job and applied jobs list added" />
     <MESSAGE value="jobs category added" />
-    <option name="LAST_COMMIT_MESSAGE" value="jobs category added" />
+    <MESSAGE value="worker profile client profile added , rating and review completed and sort worker list by highest average rating completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="worker profile client profile added , rating and review completed and sort worker list by highest average rating completed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/userapp/views.py</url>
-          <line>312</line>
+          <line>331</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

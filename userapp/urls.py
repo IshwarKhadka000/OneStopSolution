@@ -76,6 +76,9 @@ urlpatterns = [
          name="clientnotifications"),
     path('userapp/job/<int:pk>/update_status/', JobStatusUpdateView.as_view(),
          name='job_update_status'),
+    path('userapp/job/proposals/<int:job_id>/', JobProposalsView.as_view(), name='job_proposals'),
+    path('userapp/job/proposal_detail/<int:pk>/', ProposalDetailView.as_view(), name='proposal_detail'),
+    path('userapp/job/proposal_detail/acceptproposal<int:pk>', AcceptProposalView.as_view(), name='accept_proposal'),
 
     # rating and review
     path('userapp/clientprofile/rate&review/<int:job_id>/', ReviewModalView.as_view(), name="rateandreview"),

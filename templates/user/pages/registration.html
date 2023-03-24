@@ -345,7 +345,7 @@ $(document).ready(function(){
     });
 
     const isValidEmail = email => {
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
         return re.test(String(email).toLowerCase());
     }
     const isValidPassword = password =>{
@@ -400,9 +400,11 @@ $(document).ready(function(){
 
         if(first_nameValue === ''){
             setError(first_name, 'First name is required');
+            is_form_valid = false;
         }
         else if(!isValidFirstName(first_nameValue)){
             setError(first_name, 'First name can have alphabets only');
+            is_form_valid = false;
         }
         else{
             setSuccess(first_name)
@@ -410,9 +412,11 @@ $(document).ready(function(){
 
         if(last_nameValue === ''){
             setError(last_name, 'Last name is required');
+            is_form_valid = false;
         }
         else if(!isValidLastName(last_nameValue)){
             setError(last_name, 'Last name can have alphabets only');
+            is_form_valid = false;
         }
         else{
             setSuccess(last_name)

@@ -35,7 +35,7 @@
 }
 </style>
 
-<!-- Worker profile Start -->
+<!--  Job post Start -->
         <div class="container-xxl py-5">
             <div class="container">
                 <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Post a new Job</h1>
@@ -43,7 +43,7 @@
                     <div class="col-10">
                         <div class="wrap">
                             <div class="form-wrap p-4 p-md-5 wow fadeInUp" data-wow-delay="0.5s">
-                            <form id="postajob-form" class="posta-form" enctype="multipart/form-data" action="" method="POST">
+                            <form id="postajob-form" enctype="multipart/form-data" action="" method="POST">
                                 {% csrf_token %}
                                 <div class="row g-3">
                                     <div class="col-md-6">
@@ -132,7 +132,7 @@
                                     </div>
                                     
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                                        <input class="btn btn-primary w-100 py-3" type="submit" value="Submit">
                                     </div>
                                 </div>
                             </form>
@@ -142,9 +142,8 @@
                 </div>
             </div>
         </div>
-        <!-- Contact End -->
-    </div>
-</section>
+        <!-- job post End -->
+
 <script src="{% static 'lib/select2/js/select2.min.js' %}"></script>
 
 <script type="text/javascript">
@@ -271,7 +270,7 @@ $(document).ready(function() {
             setSuccess(deadline);
         }
         if(descriptionValue == ''){
-            setError(description, 'fee is required');
+            setError(description, 'Description is required');
             is_form_valid = false;
         }
         else{

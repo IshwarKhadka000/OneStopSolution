@@ -17,21 +17,12 @@
                                             <a href="{% url 'jobdetail' job.id %}">
                                                 <h5 class="mb-3">{{job.title}}</h5>
                                             </a>
+                                            <span>Posted on: {{job.posted_on}}</span>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                                         <div class="d-flex justify-content-between">
-                                            <a class="text-info"  data-toggle="modal" data-target="" data-remote="">
-                                                <i class="fa-solid fa-eye fa-lg mr-5" data-toggle="tooltip" title="view"></i>
-                                            </a>
-                                            <span class="mx-2"></span>
-                                            <a class="text-warning"  data-toggle="modal" data-target="" data-remote="">
-                                                <i class="fa-solid fa-pen-to-square fa-lg mr-5" data-toggle="tooltip" title="edit"></i>
-                                            </a>
-                                            <span class="mx-2"></span>
-                                            <a data-target="" class="text-danger mr-2" data-toggle="modal" data-remote="">
-                                                <i class="fa-solid fa-trash fa-lg mr-5" data-toggle="tooltip" title="delete"></i>
-                                            </a>
+                                            <a class="btn btn-primary"  href="{% url 'job_proposals' job.id%}">View proposals</a>
                                         </div>
                                     </div>
                                 </div>

@@ -1,20 +1,25 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.messages import success
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseForbidden
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, DetailView, View, UpdateView, CreateView, ListView, UpdateView, DeleteView
+from django.views.generic import TemplateView, DetailView, View, UpdateView, CreateView, ListView, UpdateView, \
+    DeleteView, FormView
 from djlint import Config
 from adminapp.forms import *
 from userapp.models import *
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
+import time
+
+
 # Create your views here.
 
-
-class IndexView(TemplateView):
+class AdminDashboardView(TemplateView):
     template_name = 'admin/pages/index.html'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['users'] = User.objects.exclude(is_superuser=True).count()
@@ -30,7 +35,7 @@ class IndexView(TemplateView):
 class ServiceListView(ListView):
     model = Service
     ordering = "id"
-    paginate_by = 1
+    paginate_by = 3
     template_name = 'admin/pages/services.html'
     context_object_name = 'services'
 
@@ -47,6 +52,7 @@ class ServiceListView(ListView):
         page_range = paginator.page_range[start_index:end_index]
         context['page_range'] = page_range
         return context
+
 
 class AddServiceView(CreateView):
     model = Service
@@ -92,6 +98,7 @@ class SkillListView(ListView):
         page_range = paginator.page_range[start_index:end_index]
         context['page_range'] = page_range
         return context
+
 
 class AddSkillView(CreateView):
     model = Skill
@@ -160,18 +167,20 @@ class WorkerListView(ListView):
         context['page_range'] = page_range
         return context
 
+
 class EditWorkerStatusView(UpdateView):
     model = Profile
     form_class = WorkerStatusForm
     context_object_name = 'profile'
     template_name = 'admin/pages/edit_worker_status.html'
     success_url = reverse_lazy('worker_list')
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['statuses'] = Status.objects.all()
         return context
-        
+
+
 class JobListView(ListView):
     model = Job
     ordering = "id"
@@ -231,7 +240,7 @@ class DeleteQueryView(View):
         return redirect('query_list')
 
 
-#Status
+# Status
 
 
 class StatusListView(ListView):
@@ -277,6 +286,7 @@ class DeleteStatusView(View):
         status = get_object_or_404(Status, pk=self.kwargs.get('pk'))
         status.delete()
         return redirect('status_list')
+
 
 class WorkerDetailView(DetailView):
     model = Profile

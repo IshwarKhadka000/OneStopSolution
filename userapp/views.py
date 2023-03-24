@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.models import Avg
+from django.db.models import Avg, Q
 from django.db.models.fields import json
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -102,12 +102,20 @@ class JobListView(ListView):
         context['skills'] = Skill.objects.all()
         return context
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.request.user.is_authenticated:
+            queryset = queryset.filter(~Q(postedby=self.request.user.id))
+        return queryset
+
 
 class FilterJobListView(View):
     template_name = 'user/pages/filtered_joblist.html'
 
     def get_experience_queryset(self, value):
         queryset = Profile.objects.all()
+        if self.request.user.is_authenticated:
+            queryset = queryset.filter(~Q(postedby=self.request.user.id))
         if value == 1:
             queryset = set(queryset.filter(experience__lte=1).values_list('id', flat=True))
         if value == 2:
@@ -120,6 +128,8 @@ class FilterJobListView(View):
 
     def get_queryset(self):
         queryset = Job.objects.filter(status='active')
+        if self.request.user.is_authenticated:
+            queryset = queryset.filter(~Q(postedby=self.request.user.id))
         if self.request.GET:
             minimum_fee = self.request.GET.get('minimum_fee')
             maximum_fee = self.request.GET.get('maximum_fee')
@@ -167,6 +177,9 @@ class TalentListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        if self.request.user.is_authenticated:
+            queryset = queryset.filter(~Q(user=self.request.user.id))
+
         queryset = sorted(queryset, key=lambda x: x.get_avg_rating, reverse=True)
         return queryset
 
@@ -183,6 +196,9 @@ class FilterTalentListView(View):
 
     def get_experience_queryset(self, value):
         queryset = Profile.objects.all()
+        if self.request.user.is_authenticated:
+            queryset = queryset.filter(~Q(user=self.request.user.id))
+
         if value == 1:
             queryset = set(queryset.filter(experience__lte=1).values_list('id', flat=True))
         if value == 2:
@@ -195,6 +211,9 @@ class FilterTalentListView(View):
 
     def get_queryset(self):
         queryset = Profile.objects.all()
+        if self.request.user.is_authenticated:
+            queryset = queryset.filter(~Q(user=self.request.user.id))
+
         if self.request.GET:
             minimum_fee = self.request.GET.get('minimum_fee')
             maximum_fee = self.request.GET.get('maximum_fee')
@@ -226,8 +245,8 @@ class FilterTalentListView(View):
 
             if skill:
                 queryset = queryset.filter(skill__in=skill).distinct()
-
             queryset = sorted(queryset, key=lambda x: x.get_avg_rating, reverse=True)
+
         return queryset
 
     def get(self, request, *args, **kwargs):
@@ -468,7 +487,7 @@ class WorkerProfileUpdateView(UpdateView):
         return redirect('workerprofile', pk=profile.user.pk)
 
 
-class JobPostView(FormView):
+class JobPostView(CreateView):
     form_class = JobCreateForm
     success_url = reverse_lazy('index')
     template_name = 'user/pages/postajob.html'
@@ -486,7 +505,13 @@ class JobPostView(FormView):
         skills = form.cleaned_data['skill']
         job.skill.add(*skills)
         messages.success(self.request, 'New job created successfully')
+
         return redirect('index')
+
+    def form_invalid(self, form):
+        for field in form.errors:
+            messages.error(self.request, f"{field}: {form.errors[field][0]}")
+        return super().form_invalid(form)
 
 
 class ContactView(SuccessMessageMixin, CreateView):
@@ -551,6 +576,17 @@ class ClientCompletedJobs(TemplateView):
         return context
 
 
+class JobProposalsView(TemplateView):
+    template_name = 'user/pages/clientprofile/jobproposals.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        job_id = self.kwargs.get('job_id')
+        context['job'] = Job.objects.get(id=job_id)
+        context['proposals'] = Proposal.objects.filter(applied_to=job_id)
+        return context
+
+
 class JobStatusUpdateView(UpdateView):
     model = Job
     fields = ['status']
@@ -610,3 +646,22 @@ class ClientNotificationView(TemplateView):
 
 class NewsLetterSubscribeView(FormView):
     template_name = 'user/layouts/footer.html'
+
+
+class ProposalDetailView(DetailView):
+    model = Proposal
+    context_object_name = 'proposal'
+    template_name = 'user/pages/clientprofile/proposaldetail.html'
+
+
+class AcceptProposalView(View):
+
+    def post(self, request, *args, **kwargs):
+        proposal = get_object_or_404(Proposal, id=self.kwargs['pk'])
+        print(proposal)
+        job = proposal.applied_to
+        job.status = 'inprogress'
+        job.assigned_to = proposal.applied_by
+        job.save()
+        messages.success(request, "Proposal accepted successfully")
+        return redirect(reverse('clientprofile', args=[request.user.id]))

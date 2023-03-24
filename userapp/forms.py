@@ -48,7 +48,7 @@ class JobCreateForm(forms.ModelForm):
 
     class Meta:
         model = Job
-        exclude = ['posted_on', 'modified_on', 'postedby']
+        exclude = ['posted_on', 'modified_on', 'postedby', 'status']
 
 
 class ContactForm(forms.ModelForm):
