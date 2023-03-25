@@ -59,7 +59,7 @@ class AdminDashboardView(TemplateView):
 class ServiceListView(ListView):
     model = Service
     ordering = "id"
-    paginate_by = 3
+    paginate_by = 5
     template_name = 'admin/pages/services.html'
     context_object_name = 'services'
 
@@ -105,7 +105,7 @@ class DeleteServiceView(View):
 class SkillListView(ListView):
     model = Skill
     ordering = "id"
-    paginate_by = 1
+    paginate_by = 5
     template_name = 'admin/pages/skills.html'
     context_object_name = 'skills'
 
@@ -151,7 +151,7 @@ class ClientListView(ListView):
     model = User
     queryset = User.objects.all().exclude(is_superuser=True).order_by('id')
     ordering = "id"
-    paginate_by = 1
+    paginate_by = 5
     template_name = 'admin/pages/clients.html'
     context_object_name = 'users'
 
@@ -173,7 +173,7 @@ class ClientListView(ListView):
 class WorkerListView(ListView):
     model = Profile
     ordering = "id"
-    paginate_by = 1
+    paginate_by = 5
     template_name = 'admin/pages/workers.html'
     context_object_name = 'profiles'
 
@@ -208,7 +208,7 @@ class EditWorkerStatusView(UpdateView):
 class JobListView(ListView):
     model = Job
     ordering = "id"
-    paginate_by = 1
+    paginate_by = 5
     template_name = 'admin/pages/jobs.html'
     context_object_name = 'jobs'
 
@@ -231,7 +231,7 @@ class JobListView(ListView):
 class QueryListView(ListView):
     model = Contact
     ordering = "id"
-    paginate_by = 1
+    paginate_by = 5
     template_name = 'admin/pages/queries.html'
     context_object_name = 'queries'
 

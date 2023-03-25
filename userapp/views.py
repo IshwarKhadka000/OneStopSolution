@@ -26,7 +26,7 @@ class IndexView(TemplateView):
         services = Service.objects.all()
         service_job_count = []
         for service in services:
-            job_count = Job.objects.filter(service=service).count()
+            job_count = Job.objects.filter(service=service, status='active').count()
             service_job_count.append((service, job_count))
         context['service_job_count'] = service_job_count
         context['jobs'] = Job.objects.filter(status='active')
