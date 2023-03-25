@@ -4,35 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7760427-354d-485d-84d8-84fc44c3a90e" name="Changes" comment="talent detail view automatic login bug fixed">
-      <change afterPath="$PROJECT_DIR$/media/Job/Images/broken-pipe.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/Job/Images/electrical_wiring_.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/Job/Images/electrical_wiring__cvUcqDQ.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/Job/Images/plumbingproblem.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/Profile/Documents/electrician_certificate.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/Profile/Documents/homeimg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/Profile/Documents/plumbingcertificate_9XiUhMX.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/Profile/Images/prabhat_profile.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/Profile/Images/sabina.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/Profile/Images/sabina_p7Iuu9r.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userapp/migrations/0025_alter_job_description_alter_job_requirements_and_more.py" afterDir="false" />
+    <list default="true" id="c7760427-354d-485d-84d8-84fc44c3a90e" name="Changes" comment="bugs fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminapp/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Job/Images/car6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Job/Images/car9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Job/Images/chiran.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Job/Images/iPhone-11-.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Job/Images/plumber_needed_5BqCVlH.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Profile/Documents/car9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Profile/Documents/plumbingcertificate_w6Ax9A6.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Profile/Images/profile.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Profile/Images/profile_NST7Xgf.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/pages/worker_detail_model.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/pages/worker_detail_model.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/pages/clientprofile/proposaldetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/clientprofile/proposaldetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/pages/talent-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/pages/talent-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/userapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679649160865</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="bugs fixed">
+      <created>1679714116730</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1679714116730</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -227,7 +207,8 @@
     <MESSAGE value="Admin login and logout" />
     <MESSAGE value="requirements updated" />
     <MESSAGE value="talent detail view automatic login bug fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="talent detail view automatic login bug fixed" />
+    <MESSAGE value="bugs fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugs fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
